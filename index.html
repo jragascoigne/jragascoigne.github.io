@@ -5,58 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>john gascoigne</title>
     <link rel="stylesheet" href="/static/style.css">
+    <script src="script.js" defer></script>
 
 </head>
 <body>
+    <header class="navbar">
+        <div class="titlemark">
+            <!-- <img class="mugshot" src="static/img/mugshot.jpeg" alt="A dashing photo of John Gascoigne"> -->
+            <div class="titlemark-col">
+                John Gascoigne<span class="subtitle">computer science</span>
+            </div>
+        </div>
+        <div class="nav-menu">
+            <button class="nav-button" onclick="setIndex(0)">
+                Home
+            </button>
+            <button class="nav-button" onclick="setIndex(-1)">
+                About
+            </button>
+            <button class="nav-button" onclick="setIndex(-2)">
+                Projects
+            </button>
+        </div>
+        <div class="titlemark socials">
+            <a class="social-link" href="google.com">
+                <i class="icon-github social-icon use-line-height"></i>
+            </a>
+            <a class="social-link" href="google.com">
+                <i class="icon-linkedin social-icon use-line-height"></i>
+            </a>
+        </div>
+    </header>
 
-    <div class="titlemark">
-        <h1>john gascoigne</h1>
-        - computer science
+    <div class="page-body" id="body" style="transform:translateX(0px)">
+        <div class="content-block">
+            <div class="flex-row">
+                <div class="flex-col"><div class="heading">about me</div>
+                    <img class="photo" src="static/img/mugshot.jpeg" alt="A dashing photo of John Gascoigne">
+                    <div class="text-content">
+                        i'm a second year BSc student studying computer science at the university of canterbury in chch, nz<br>
+                        i've been programming and building apps and websites since i was little.<br> i am experienced in python, java and c<br>
+                    </div>
+                </div>
+                <hr>
+                <div class="flex-col"><div class="heading">projects</div>
+                    <ul>
+                        <li>
+                            <!-- hi -->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block" style="left: -100vw;">
+            <div class="flex-row">
+                <div class="flex-col"><div class="heading">chamber of secrets!</div>
+                    <img class="photo" src="static/img/fitty.jpeg" alt="A dashing photo of John Gascoigne">
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block" style="left: 100vw;">
+            <div class="flex-row">
+                <div class="flex-col"><div class="heading">about me</div>
+                    <img class="photo" src="static/img/mugshot.jpeg" alt="A dashing photo of John Gascoigne">
+                    <div class="text-content">
+                        i'm a second year BSc student studying computer science at the university of canterbury in chch, nz<br>
+                        i've been programming and building apps and websites since i was little.<br> i am experienced in python, java and c<br>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="flex-row">
-        <div class="flex-col"><div class="hdr">about me</div>
-            <ul>
-                <li>
-                    i'm a second year BSc student studying computer science at the university of canterbury in chch, nz<br>
-                    i've been programming and building apps and websites since i was little.<br> i am experienced in python, java and c<br>
-                </li>
-            </ul>
-        </div>
-        <hr>
-        <div class="flex-col"><div class="hdr">projects</div>
-            <ul>
-                <li>
-                    <!-- hi -->
-                </li>
-            </ul>
-        </div>
-        
-        </div>
+    <div class="footer">
+        (c) john gascoigne 2025
     </div>
-    <!-- <div class="str">
-    <div class="flex-row">
-        <div class="flex-col"><div class="hdr">accolades</div>
-            <ul>
-                <li>
-                </li>
-            </ul>
-            
-        </div>
-        <div class="flex-col"><div class="hdr">accomplishments</div>
-            <ul>
-                </li>
-
-                </li>
-            </ul>
-        </div>
-        <div class="flex-col"><div class="hdr">altruism</div>
-            <ul>
-               
-            </ul>
-        </div>
-    </div>
-    </div> -->
-    
 </body>
 </html>
