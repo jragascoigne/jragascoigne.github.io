@@ -260,6 +260,32 @@ body {
     color: white;
 }
 
+.li-item {
+    position: relative;
+}
+
+.li-line {
+    font-size: 20px;
+    position: relative;
+    margin-left: 30px
+}
+
+.li-star {
+    position: absolute;
+    font-family: "Labil Grotesk", Arial, Helvetica, sans-serif;
+    transform: translateX(-20px) translateY(2px);
+
+}
+
+.skill-bar {
+    height: 5px;
+    background-color: rgb(226, 44, 138);;
+    position: absolute;
+    right: 0px;
+    transform: translateY(-14px);
+    border-radius: 10px;
+    width: 0%;
+}
 
 @media screen and (max-width: 768px) {
     .flex-row {
