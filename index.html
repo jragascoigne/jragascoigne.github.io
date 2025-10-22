@@ -17,13 +17,16 @@
             </div>
         </div>
         <div class="nav-menu">
-            <button class="nav-button" onclick="setIndex(0)">
-                Home
-            </button>
-            <button class="nav-button" onclick="setIndex(-1)">
+            <button class="nav-button" onclick="setIndex(1)" data-tab="1">
                 About
             </button>
-            <button class="nav-button" onclick="setIndex(-2)">
+            <button class="nav-button" onclick="setIndex(0)" data-tab="0">
+                Home
+            </button>
+            <button class="nav-button" onclick="setIndex(-1)" data-tab="-1">
+                Skills
+            </button>
+            <button class="nav-button" onclick="setIndex(-2)" data-tab="-2">
                 Projects
             </button>
         </div>
@@ -38,27 +41,7 @@
     </header>
 
     <div class="page-body" id="body" style="transform:translateX(0px)">
-        <div class="content-block">
-            <div class="flex-row">
-                <div class="flex-col"><div class="heading">about me</div>
-                    <img class="photo" src="static/img/mugshot.jpeg" alt="A dashing photo of John Gascoigne">
-                    <div class="text-content">
-                        i'm a second year BSc student studying computer science at the university of canterbury in chch, nz<br>
-                        i've been programming and building apps and websites since i was little.<br> i am experienced in python, java and c<br>
-                    </div>
-                </div>
-                <hr>
-                <div class="flex-col"><div class="heading">projects</div>
-                    <ul>
-                        <li>
-                            <!-- hi -->
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-block" style="left: -100vw;">
+        <div class="content-block" style="left: -200vw;">
             <div class="flex-row">
                 <div class="flex-col"><div class="heading">chamber of secrets!</div>
                     <img class="photo" src="static/img/fitty.jpeg" alt="A dashing photo of John Gascoigne">
@@ -66,7 +49,23 @@
             </div>
         </div>
 
-        <div class="content-block" style="left: 100vw;">
+        <div class="content-block" data-tab="0" style="left: 0;">
+            <div class="flex-row">
+                <div class="flex-col">
+                    <div class="home-wrapper">
+                    <div class="heading">hey, i'm john gascoigne</div>
+                    <div class="text-content">
+                        i'm a second year BSc student studying computer science at the university of canterbury in chch, nz<br>
+                        i've been programming and building apps and websites since i was little.<br> i am experienced in python, java and c<br>
+                        <br>
+                    </div>
+                </div>
+                    <!-- <img class="photo" src="static/img/mugshot.jpeg" alt="A dashing photo of John Gascoigne"> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block" data-tab="1" style="left: -100vw;">
             <div class="flex-row">
                 <div class="flex-col"><div class="heading">about me</div>
                     <img class="photo" src="static/img/mugshot.jpeg" alt="A dashing photo of John Gascoigne">
@@ -74,9 +73,15 @@
                         i'm a second year BSc student studying computer science at the university of canterbury in chch, nz<br>
                         i've been programming and building apps and websites since i was little.<br> i am experienced in python, java and c<br>
                         <br>
-                        quick links:<br>
-                        my <a href="https://github.com/jragascoigne">github</a><br>
+                        <div class="heading">
+                        quick links
+                        </div><br>
+                        my <a href="https://github.com/jragascoigne">github</a>
+                        <div class="flair-link">@jragascoigne</div>
+                        <br><br>
                         my <a href="https://www.linkedin.com/in/john-gascoigne/">linkedin</a>
+                        <div class="flair-link">@john-gascoigne</div>
+
                     </div>
                 </div>
                 <hr>
@@ -92,7 +97,31 @@
             </div>
         </div>
 
-        <div class="content-block" style="left: 200vw;">
+        <div class="content-block" data-tab="-1" style="left: 100vw;">
+            <div class="flex-row final">
+                <div class="flex-col"><div class="heading">Hard Skills</div>
+                    <img class="photo" src="static/img/mugshot.jpeg" alt="A dashing photo of John Gascoigne">
+                    <div class="text-content">
+                        i'm a second year BSc student studying computer science at the university of canterbury in chch, nz<br>
+                        i've been programming and building apps and websites since i was little.<br>
+                        i am experienced in python, java and c<br>
+                        
+
+
+                    </div>
+                </div>
+                <hr>
+                <div class="flex-col"><div class="heading">Soft Skills</div>
+                    <ul>
+                        <li>
+                            <!-- hi -->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block" data-tab="-2" style="left: 200vw;">
             <div class="flex-row final">
                 <div class="flex-col"><div class="heading">Projects</div>
                     <img class="photo" src="static/img/mugshot.jpeg" alt="A dashing photo of John Gascoigne">

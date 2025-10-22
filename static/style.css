@@ -44,11 +44,16 @@ hr {
     justify-content: space-evenly;
 }
 
+.navbar, .footer {
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
 .mugshot {
     width: 50px;
     aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 5px;
 }
 
 .nav-menu {
@@ -79,7 +84,6 @@ hr {
     flex: 1;
     border: 1px solid black;
     background-color: white;
-    border-radius: 20px;
     font-size: 0.75rem;
     position: relative;
     cursor: pointer;
@@ -173,7 +177,9 @@ body {
 }
 
 .text-content {
-    flex: 1;
+    position: relative;
+    z-index: 100;
+    display: block;
 }
 
 .text-content a {
@@ -198,6 +204,12 @@ body {
     width: 100vw;
     top: 0;
     height: 100%;
+    /* opacity: 0; */
+    transition: opacity 0.35s ease-out;
+}
+
+.content-block.selected {
+    opacity: 1;
 }
 
 .social-link {
@@ -208,13 +220,46 @@ body {
     color: black;
 
     padding: 2px;
-    border-radius: 5px;
 }
 
 .social-link:hover {
     color: white; /* Or your desired text color */
     background-color: black;
 }
+
+.flair-link {
+    font-family: "Labil Grotesk", Arial, Helvetica, sans-serif;
+    color: #ccc;
+    display: block;
+    font-style: italic;
+    font-size: 20px;
+    width: 100%;
+    text-align: right;
+    transform: translateY(-25px);
+    position: absolute;
+}
+
+.home-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.home-page .heading {
+    height: max-content;
+    justify-content: center;
+    margin-bottom: 10vh;
+
+}
+
+.nav-button.selected {
+    background-color: black;
+    color: white;
+}
+
 
 @media screen and (max-width: 768px) {
     .flex-row {

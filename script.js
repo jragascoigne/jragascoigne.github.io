@@ -2,8 +2,10 @@ const body = document.querySelector("#body");
 let x = 0;
 let curIndex = 0;
 let minScroll = -2;
-let maxScroll = 1;
+let maxScroll = 2;
 let scrollTimeout;
+
+setIndex(0, true);
 
 window.onresize = () => {
     const vw = window.innerWidth;
@@ -28,33 +30,16 @@ window.addEventListener("wheel", function (e) {
     // Apply transform immediately
     body.style.transform = `translateX(${x * vw}px)`;
 
-    // Clear any existing timer
     clearTimeout(scrollTimeout);
 
-    // Start a new timer — when it finishes, we assume scrolling stopped
     scrollTimeout = setTimeout(() => {
         let index = Math.round(x);
-
-        if (index < minScroll) index = minScroll;
-        if (index > maxScroll) index = maxScroll;
-
-        x = index
-        curIndex = index;
-
-        // Smooth transition to snapped position
-        body.style.transition = "transform 0.3s ease";
-        body.style.transform = `translateX(${x * vw}px)`;
-
-        // Remove the transition after it completes
-        setTimeout(() => {
-            body.style.transition = "";
-        }, 300);
-
-    }, 150); // Adjust timeout (ms) if you want more or less sensitivity
+        setIndex(index);
+    }, 150); // ms
 
 }, { passive: false });
 
-function setIndex(newIndex) {
+function setIndex(newIndex, disableTransition=false) {
     const vw = window.innerWidth;
 
     if (newIndex < minScroll) newIndex = minScroll;
@@ -63,11 +48,31 @@ function setIndex(newIndex) {
     x = newIndex;
     curIndex = newIndex;
 
-    // Smooth transition to snapped position
-    body.style.transition = "transform 0.8s ease";
+    if (disableTransition) {
+        body.style.transition = "";
+    } else {
+        body.style.transition = "transform 0.8s ease";
+    }
+
     body.style.transform = `translateX(${x * vw}px)`;
 
-    // Remove the transition after it completes
+    const tabButtons = document.querySelectorAll(".nav-button");
+    tabButtons.forEach((t) => { t.classList.remove("selected") });
+
+    const tabs = document.querySelectorAll(".content-block");
+    tabs.forEach((t) => { t.classList.remove("selected") });
+
+    const selButton = document.querySelector(`.nav-button[data-tab="${newIndex}"]`);
+    const selTab = document.querySelector(`.content-block[data-tab="${newIndex}"]`);
+
+    if (selButton) {
+        selButton.classList.add("selected");
+    }
+
+    if (selTab) {
+        selTab.classList.add("selected");
+    }
+
     setTimeout(() => {
         body.style.transition = "";
     }, 300);
