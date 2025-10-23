@@ -11,11 +11,35 @@
 }
 
 
+:root {
+    /* Light Mode */
+    --bg-color: #fcfcfc;
+    --outline-color: #101010;
+    --text-color: #101010;
+    --style-color: rgb(226, 44, 138);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Dark mode */
+        --bg-color: #1c1c1c;
+        --outline-color: #eee;
+        --text-color: #eee;
+    }
+}
+
+::selection {
+  background-color: var(--style-color); /* Changes the background color of the selected text */
+  color: white; /* Changes the text color of the selected text */
+}
+
 * {
     font-family: "Inter", Arial, Helvetica, sans-serif;
     font-weight: 400;
     font-size: normal;
     box-sizing: border-box;
+    color: var(--text-color);
+    background-color: var(--bg-color);
 }
 
 body {
@@ -32,12 +56,12 @@ hr {
     margin: 0 20px;
     border: none;
     outline: none;
-    background-color: black;
+    background-color: var(--outline-color);
     width: 1px;
 }
 
 .navbar {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--outline-color);
     padding: 15px;
     display: flex;
     flex-direction: row;
@@ -70,28 +94,26 @@ hr {
 .nav-menu::before {
     content: "";
     position: absolute;
-
     top: 50%;
     height: 1px;
     width: 100%;
-
-    background-color: black;
+    background-color: var(--outline-color);
 
 }
 
 .nav-button {
     padding: 10px;
     flex: 1;
-    border: 1px solid black;
-    background-color: white;
+    border: 1px solid var(--outline-color);
+    background-color: var(--bg-color);
     font-size: 0.75rem;
     position: relative;
     cursor: pointer;
 }
 
 .nav-button:hover {
-    background-color: black;
-    color: white;
+    background-color: var(--outline-color);
+    color: var(--bg-color);
 }
 
 .titlemark {
@@ -149,7 +171,7 @@ body {
 }
 
 .flex-row {
-    border-right: 1px solid black;
+    border-right: 1px solid var(--outline-color);
     display: flex;
     flex-direction: row;
     gap: 5px;
@@ -158,7 +180,7 @@ body {
 }
 
 .flex-row.final {
-    border-right: 0px solid black
+    border-right: 0px solid var(--outline-color);
 }
 
 .flex-col {
@@ -166,7 +188,7 @@ body {
     display: flex;
     flex: 1;
     flex-direction: column;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--bg-color);
 }
 
 .heading {
@@ -183,11 +205,11 @@ body {
 }
 
 .text-content a {
-    color: rgb(226, 44, 138);
+    color: var(--style-color);
 }
 
 .footer {
-    border-top: 1px solid black;
+    border-top: 1px solid var(--outline-color);
     padding: 15px;
 }
 
@@ -217,14 +239,18 @@ body {
     padding: 0;
     margin: 0;
     display: block;
-    color: black;
-
+    color: var(--outline-color);
+    background-color: transparent;
     padding: 2px;
 }
 
 .social-link:hover {
-    color: white; /* Or your desired text color */
-    background-color: black;
+    color: var(--bg-color);
+    background-color: var(--outline-color);
+}
+
+.social-link:hover i {
+    color: var(--bg-color);
 }
 
 .flair-link {
@@ -237,6 +263,7 @@ body {
     text-align: right;
     transform: translateY(-25px);
     position: absolute;
+    background-color: transparent;
 }
 
 .home-wrapper {
@@ -256,8 +283,8 @@ body {
 }
 
 .nav-button.selected {
-    background-color: black;
-    color: white;
+    background-color: var(--outline-color);
+    color: var(--bg-color);
 }
 
 .li-item {
@@ -279,7 +306,7 @@ body {
 
 .skill-bar {
     height: 5px;
-    background-color: rgb(226, 44, 138);
+    background-color: var(--style-color);
     position: absolute;
     right: 0px;
     transform: translateY(-14px);
@@ -298,11 +325,11 @@ body {
     height: 100%;
     padding: 10px;
     margin: 10px 0;
-    outline: 1px solid black;
+    outline: 1px solid var(--outline-color);
 }
 
 .project-item>a {
-    color: black;
+    color: var(--outline-color);
     text-decoration: none;
 }
 
@@ -311,7 +338,7 @@ body {
 }
 
 .project-link {
-    color:  rgb(226, 44, 138);
+    color:  var(--style-color);
 }
 
 @media screen and (max-width: 768px) {

@@ -33,6 +33,8 @@
 .icon-redirect:before { content: "\e905"; }
 
 .social-icon {
+  color: var(--outline-color);
+  background-color: transparent;
   font-size: 1.5rem;
   display: block;
 }
