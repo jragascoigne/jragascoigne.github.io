@@ -14,30 +14,28 @@ window.onresize = () => {
 }
 
 window.addEventListener("wheel", function (e) {
-    const vw = window.innerWidth;
-    // Prevent default scrolling
     e.preventDefault();
 
-    if (Math.abs(e.deltaY) < 5) {
-        return;
+    let delta = e.deltaY;
+
+    if (Math.abs(delta) > 50) {
+        delta = Math.sign(delta) * 50;
     }
 
+    const vw = window.innerWidth;
     const scrollMod = (1 - Math.min(1, Math.abs((x - curIndex) / 0.55)));
 
-    // Adjust x position based on scroll direction
-    x -= ((0.01 * e.deltaY ** 2) * Math.sign(e.deltaY) * scrollMod) / vw;
+    x -= ((0.002 * delta) * scrollMod);
 
-    // Apply transform immediately
     body.style.transform = `translateX(${x * vw}px)`;
 
     clearTimeout(scrollTimeout);
-
     scrollTimeout = setTimeout(() => {
         let index = Math.round(x);
         setIndex(index);
-    }, 150); // ms
-
+    }, 50);
 }, { passive: false });
+
 
 function setIndex(newIndex, disableTransition=false) {
     const vw = window.innerWidth;
