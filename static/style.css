@@ -196,6 +196,7 @@ body {
     font-size: 40px;
     letter-spacing: -2px;
     font-weight: 500;
+    margin-bottom: 10px;
 }
 
 .text-content {
@@ -214,7 +215,7 @@ body {
 }
 
 .photo {
-    width: 200px;
+    width: 240px;
     aspect-ratio: 1;
     object-fit: cover;
 }
@@ -341,7 +342,8 @@ body {
     color:  var(--style-color);
 }
 
-.image-caption {
+.photo-caption {
+    margin-top: 4px;
     /* font-family: "Labil Grotesk", Arial, Helvetica, sans-serif; */
     font-style: italic;
     font-weight: 200;
@@ -349,12 +351,28 @@ body {
 
 }
 
-.image-caption::before {
+.photo-caption::before {
     content: "\""
 }
 
-.image-caption::after {
+.photo-caption::after {
     content: "...\""
+}
+
+.about-box {
+    padding: 0 15px;
+    border: 1px solid var(--outline-color);
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.about-box .about-box-text li {
+    margin: 10px 0;
+}
+
+.about-box .about-box-text li::before {
+    content: "-->";
 }
 
 @media screen and (max-width: 768px) {
