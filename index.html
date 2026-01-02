@@ -3,237 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>john gascoigne</title>
+    <title>jragascoigne</title>
     <link rel="stylesheet" href="/static/style.css">
-    <script src="script.js" defer></script>
-
+    <link rel="stylesheet" href="/static/portfolio-grom/portfolio-grom.css">
 </head>
 <body>
-    <header class="navbar">
-        <div class="titlemark">
+    <div id="ascii-bg"></div>
 
-            <div class="titlemark-col">
-                John Gascoigne<span class="subtitle">computer science</span>
-            </div>
-        </div>
-        <div class="nav-menu">
-            <button class="nav-button" onclick="setIndex(1)" data-tab="1">
-                About
-            </button>
-            <button class="nav-button" onclick="setIndex(0)" data-tab="0">
-                Home
-            </button>
-            <button class="nav-button" onclick="setIndex(-1)" data-tab="-1">
-                Skills
-            </button>
-            <button class="nav-button" onclick="setIndex(-2)" data-tab="-2">
-                Projects
-            </button>
-        </div>
-        <div class="titlemark socials">
-            <a class="social-link" href="https://github.com/jragascoigne" target="_blank">
-                <i class="icon-github social-icon use-line-height"></i>
-            </a>
-            <a class="social-link" href="https://www.linkedin.com/in/john-gascoigne/" target="_blank">
-                <i class="icon-linkedin social-icon use-line-height"></i>
-            </a>
-        </div>
-    </header>
-
-    <div class="page-body" id="body" style="transform:translateX(0px)">
-        <div class="content-block" style="left: -200vw;">
-            <div class="flex-row">
-                <div class="flex-col"><div class="heading">chamber of secrets!</div>
-                    <img class="photo" src="static/img/fitty.jpeg" alt="A dashing photo of John Gascoigne">
-                    <div class="photo-caption">lil fitty</div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="content-block" data-tab="0" style="left: 0;">
-            <div class="flex-row">
-                <div class="flex-col">
-                    <div class="home-wrapper">
-                    <div class="heading">hey, i'm john gascoigne</div>
-                    <div class="text-content">
-                        i'm a second year BSc student studying computer science at the university of canterbury in chch, nz<br>
-                        i've been programming and building apps and websites since i was little.<br> i am experienced in python, java and c<br>
-                        <br>
-                    </div>
-                </div>
-                    <!-- <img class="photo" src="static/img/mugshot.jpeg" alt="A dashing photo of John Gascoigne"> -->
-                </div>
-            </div>
-        </div>
-
-        <div class="content-block" data-tab="1" style="left: -100vw;">
-            <div class="flex-row">
-                <div class="flex-col"><div class="heading">about me</div>
-
-                <div class="about-box">
-
-                    <div class="flex-col">
-                    <img class="photo" src="static/img/mugshot.jpeg" alt="A dashing photo of John Gascoigne">
-                    <div class="photo-caption">me circa 2025</div>
-                    </div>
-                    <ul class="about-box-text">
-                        <li>
-                        i was born in wellington, new zealand, but moved to christchurch for university
-                        </li>
-                        <li>
-                        i'm an identical twin
-                        </li>
-                    </ul>
-                </div>
-
-                    <div class="text-content">
-                        <div class="heading">quick likes</div>
-                        <div class="li-item">
-                            <div class="li-line"><span class="li-star">*</span>watching football (spurs)</div>
-                        </div>
-                        <div class="li-item">
-                            <div class="li-line"><span class="li-star">*</span>architecture</div>
-                        </div>
-                        <div class="li-item">
-                            <div class="li-line"><span class="li-star">*</span>comme des garçons</div>
-                        </div>
-
-                        <br>
-                        
-                    </div>
-                </div>
-                <hr>
-                <div class="flex-col"><div class="heading">about this site</div>
-                    <div class="text-content">
-
-                        this site was created with pure html/css/js<br>
-                        for the icons in the header i used <a href="https://github.com/SlickRamen/gromit-react" target="_blank">gromit</a>, an iconfont generator which was created by <a href="https://slickramen.github.io" target="_blank">my brother</a><br>
-                        
-                        <div class="heading">
-                        quick links
-                        </div><br>
-                        my <a href="https://github.com/jragascoigne" target="_blank">github</a>
-                        <div class="flair-link">@jragascoigne</div>
-                        <br><br>
-                        my <a href="https://www.linkedin.com/in/john-gascoigne/" target="_blank">linkedin</a>
-                        <div class="flair-link">@john-gascoigne</div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-block" data-tab="-1" style="left: 100vw;">
-            <div class="flex-row">
-                <div class="flex-col">
-                    <div class="heading">soft skills</div>
-                    <img class="photo" src="static/img/painting.jpeg" alt="A dashing photo of painting">
-                    <div class="photo-caption">painting my dad's basement</div>
-
-                    <div class="text-content">
-                        <!-- pretend this is a ul.. -->
-                        <div class="li-item">
-                            <div class="li-line"><span class="li-star">*</span>Critical Thinking</div>
-                        </div>
-                        <div class="li-item">
-                            <div class="li-line"><span class="li-star">*</span>Problem Solving</div>
-                        </div>
-                        <div class="li-item">
-                            <div class="li-line"><span class="li-star">*</span>Time Management</div>
-                        </div>
-                        <div class="li-item">
-                            <div class="li-line"><span class="li-star">*</span>Collaboration</div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="flex-col"><div class="heading">hard skills</div>
-                    <div class="text-content">
-                        <!-- pretend this is a ul.. -->
-                        <div class="heading">the technical stuff</div>
-                        <div class="li-item">
-                            <div class="li-line"><span class="li-star">*</span>Web Development</div>
-                        </div>
-                        <div class="li-item">
-                            <div class="li-line"><span class="li-star">*</span>Algorithms and Data Structures</div>
-                        </div>
-                        <div class="heading">languages</div>
-
-                        <div class="li-item">
-                            <div class="li-line"><span class="li-star">*</span>Python</div>
-                            <div class="skill-bar" style="width: 60%;"></div>
-                        </div>
-                        <div class="li-item">
-                            <div class="li-line"><span class="li-star">*</span>HTML, CSS, JS</div>
-                            <div class="skill-bar" style="width: 40%;"></div>
-
-                        </div>
-                        <div class="li-item">
-                            <div class="li-line"><span class="li-star">*</span>Java</div>
-                            <div class="skill-bar" style="width: 20%;"></div>
-
-                        </div>
-                        <div class="li-item">
-                            <div class="li-line"><span class="li-star">*</span>C/C++</div>
-                            <div class="skill-bar" style="width: 10%;"></div>
-                        </div>
-                        
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-block" data-tab="-2" style="left: 200vw;">
-            <div class="flex-row final">
-                <div class="flex-col"><div class="heading">some info</div>
-                    <img class="photo" src="static/img/jimbo.jpeg" alt="A dashing photo of JIMBO">
-                    <div class="photo-caption">locked in on bala</div>
-                    <div class="text-content">
-                    a lot of what i've been working on is related to my coursework. this year i wrote a socket and a python compiler.<br>
-                    though i do have some things behind the scenes which are still in development, you can find most of my work on my <a href="https://github.com/jragascoigne" target="_blank">github</a>.
-                        
-
-
-                    </div>
-                </div>
-                <hr>
-                <div class="flex-col"><div class="heading">projects</div>
-                    <div class="project-container">
-                        
-                        <div class="project-item">
-                        <a href="https://github.com/jragascoigne/socket" target="_blank">
-                            <div class="heading">Socket</div>
-                            A socket written in <span class="project-flair">Python</span> featuring both a Client and a Server<br>
-                            <div class="project-link">&#8599 GitHub</div>
-                        </a>
-                        </div>
-
-                        <div class="project-item">
-                        <a href="https://github.com/jragascoigne/socket" target="_blank">
-                            <div class="heading">Compiler</div>
-                            A compiler written in <span class="project-flair">Python</span><br>
-                            <div class="project-link">&#8599 GitHub</div>
-                        </a>
-                        </div>
-
-                        <div class="project-item">
-                        <a href="https://github.com/jragascoigne/jragascoigne.github.io" target="_blank">
-                            <div class="heading">This Website</div>
-                            My portfolio website written in <span class="project-flair">HTML, CSS</span> and <span class="project-flair">JavaScript</span><br>
-                            <div class="project-link">&#8599 GitHub</div> 
-                        </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="main-wrapper">
+        <h1>Hi, I'm John Gascoigne</h1><br>
+        <h2>I'm a third year Computer Science student studying at the University of Canterbury.</h2>
+        <h2>I have experience in web development and software engineering</h2>
+        <h2>I love football, music and video games</h2>
     </div>
-
-    <div class="footer">
-        (c) john gascoigne 2025
+    <div class="social-container">
+        <a class="social-link" href="https://github.com/jragascoigne" target="_blank" id="github-link">
+            <i class="icon-github social-icon use-line-height"></i>
+        </a>
+        <a class="social-link" href="https://linkedin.com/in/john-gascoigne" target="_blank" id="linkedin-link">
+            <i class="icon-linkedin social-icon use-line-height"></i>
+        </a>
     </div>
+    <script src="/static/ascii-bg.js"></script>
 </body>
 </html>

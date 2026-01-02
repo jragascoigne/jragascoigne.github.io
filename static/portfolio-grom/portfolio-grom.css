@@ -31,10 +31,3 @@
 .icon-link:before { content: "\e903"; }
 .icon-linkedin:before { content: "\e904"; }
 .icon-redirect:before { content: "\e905"; }
-
-.social-icon {
-  color: var(--outline-color);
-  background-color: transparent;
-  font-size: 1.5rem;
-  display: block;
-}
