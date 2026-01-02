@@ -1,5 +1,5 @@
 const bg = document.getElementById("ascii-bg");
-const chars = ",.-~:;=!*#$@engiocsagnhojGJ|";
+const chars = ".,-~=+o*%@#:l|";
 let RADIUS = 110;
 let RADIUS_TARGET = 110;
 const FADE_SPEED = 0.96;
@@ -67,7 +67,7 @@ function resize() {
         rowWidths[y] = Math.floor(Math.random() * 3);
 
         for (let x = 0; x < cols; x++) {
-            staticChars[y][x] = chars[Math.floor(Math.random() * 12)];
+            staticChars[y][x] = chars[Math.floor(Math.random() * 8)];
             renderChars[y][x] = chars[0];
 
         }
