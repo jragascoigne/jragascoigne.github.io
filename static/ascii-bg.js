@@ -47,6 +47,7 @@ let charDesign = [
 
 let staticChars = [];
 let renderChars = [];
+let bgChars = [];
 
 let rowWidths = [];
 
@@ -59,19 +60,27 @@ function resize() {
     
     staticChars = [];
     renderChars = [];
+    bgChars = [];
 
     for (let y = 0; y < rows; y++) {
 
         staticChars[y] = [];
         renderChars[y] = [];
+        bgChars[y] = [];
         rowWidths[y] = Math.floor(Math.random() * 3);
 
         for (let x = 0; x < cols; x++) {
             staticChars[y][x] = chars[Math.floor(Math.random() * 8)];
             renderChars[y][x] = chars[0];
 
+            let targetCharIndex = (x**y) % 3;
+            if (targetCharIndex < 1) targetCharIndex = 0;
+            bgChars[y][x] = targetCharIndex;
+
         }
+        
     }
+    
 }
 
 function render() {
@@ -110,24 +119,26 @@ function render() {
                 charTarget = charDesign;
             }
 
-            let flipX = x
-
-            if (y < renderChars.length && flipX < renderChars[0].length) {
+            if (y < renderChars.length && x < renderChars[0].length) {
                 renderChars[y][x] 
-                baseCharIndex = chars.indexOf(renderChars[y][flipX]);
+                baseCharIndex = chars.indexOf(renderChars[y][x]);
                 if (baseCharIndex === -1) baseCharIndex = 0;
-                
-                let targetCharIndex = 0;
 
-                if (y < charTarget.length && flipX < charTarget[0].length) {
-                    targetCharIndex = chars.indexOf(charTarget[y][flipX]);
+                let targetCharIndex = 0;
+                
+                if (y < bgChars.length && x < bgChars[0].length) {
+                    targetCharIndex = bgChars[y][x];
+                }
+
+                if (y < charTarget.length && x < charTarget[0].length) {
+                    targetCharIndex = chars.indexOf(charTarget[y][x]);
                     if (targetCharIndex === -1) targetCharIndex = 0;
                 }
                 
                 if (baseCharIndex < targetCharIndex) {
-                    renderChars[y][flipX] = chars[baseCharIndex + 1];
+                    renderChars[y][x] = chars[baseCharIndex + 1];
                 } else if (baseCharIndex > targetCharIndex) {
-                    renderChars[y][flipX] = chars[baseCharIndex - 1];
+                    renderChars[y][x] = chars[baseCharIndex - 1];
                 }
             }
             
@@ -135,7 +146,7 @@ function render() {
             const charIndex = Math.min(chars.length - 1, baseCharIndex + densityShift);
             let char = chars[charIndex];
             
-            let charCredits = 'c.john.gascoigne.2026.';
+            let charCredits = 'jra.onl|c|john|gascoigne|2026!';
             charCredits = charCredits.split('').reverse().join('');
 
             if (y === 1 && x >= cols - 1 - (charCredits.length - 1)) {

@@ -105,7 +105,6 @@ html, body {
     border-radius: 10px;
     display: flex;
     padding: 15px;
-
     gap: 15px;
 }
 
@@ -115,12 +114,50 @@ html, body {
     font-size: 2.5rem;
     display: block;
     padding: 5px;
-
-
-
 }
 
 .social-link {   
     text-decoration: none; 
     cursor: pointer;
+}
+
+.sidebar * {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    width: 5%;
+    height: 100%;
+    background-color: var(--bg-color);
+    padding: 20px 10px;
+    color: var(--style-color);
+    box-sizing: border-box;
+    gap: 40px;
+}
+
+.vl {
+    /* border-left: 1px dashed rgb(60, 60, 60); */
+    height: 100%;
+    position: relative;
+    z-index: 9998;
+}
+
+.vl::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100%;
+    border-left: 1px dashed #3c3c3c;
+    z-index: -1;
+    transition: border-left 0.1s ease;
+
+}
+
+.vl.selected::after  {
+    border-left: 3px solid var(--style-color);
+
 }
