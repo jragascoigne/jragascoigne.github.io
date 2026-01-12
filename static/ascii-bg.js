@@ -1,4 +1,8 @@
+import { gh, li } from './ascii-logos.js';
+
+
 const bg = document.getElementById("ascii-bg");
+
 const chars = ".,-~=+o*%@#:l|";
 let RADIUS = 110;
 let RADIUS_TARGET = 110;
@@ -21,27 +25,9 @@ let charSet = 0;
 const CELL_W = 6.6;
 const CELL_H = 11;
 
-let charDesign = [
-"           .:+%@@@@@%+:.           ",
-"        -@@@@@@@@@@@@@@@@@-        ",
-"     .%@@@@@@@@@@@@@@@@@@@@@%.     ",
-"   .#@@@@@@@@@@@@@@@@@@@@@@@@@%.   ",
-"  :@@@@@. :%@@@@@@@@@@@%: .@@@@@:  ",
-" .@@@@@%                   #@@@@@. ",
-".@@@@@@@.                 .@@@@@@@:",
-"+@@@@@@:                   :@@@@@@+",
-"%@@@@@+                     +@@@@@%",
-"@@@@@@=                     -@@@@@@",
-"@@@@@@*                     *@@@@@@",
-"*@@@@@@:                   :@@@@@@#",
-"-@@@@@@@-                 -@@@@@@@-",
-" *@@%-%@@@%.           .%@@@@@@@@* ",
-"  *@@@-.#@@@@*       +@@@@@@@@@@#  ",
-"   -@@@- .:-.        :@@@@@@@@@=   ",
-"    .#@@@*-.-.       :@@@@@@@#.    ",
-"      .*@@@@@-       :@@@@@*.      ",
-"          -%@.       .@@-          ",
-];
+
+
+let charDesign = gh;
 
 
 
@@ -188,25 +174,48 @@ window.addEventListener("mousemove", e => {
 });
 
 document.addEventListener("DOMContentLoaded", e => {
-    const allLinks = document.querySelectorAll(".social-link");
+    const githubLink = document.getElementById("github-link");
+    const linkedinLink = document.getElementById("linkedin-link");
+    
     resize();
-    allLinks.forEach(link => {
-        link.addEventListener("mouseenter", e => {
+    
+    if (githubLink) {
+        githubLink.addEventListener("mouseenter", e => {
             mouseOverride = true;
-            const rect = link.getBoundingClientRect();
+            const rect = githubLink.getBoundingClientRect();
             const bgRect = bg.getBoundingClientRect();
             relX = rect.left - bgRect.left + rect.width / 2;
             relY = rect.top - bgRect.top + rect.height / 2;
             RADIUS_TARGET = 70;
+            charDesign = gh;
             charSet = 1;
         });
 
-        link.addEventListener("mouseleave", e => {
+        githubLink.addEventListener("mouseleave", e => {
             RADIUS_TARGET = 110;
             mouseOverride = false;
             charSet = 0;
         });
-    });
+    }
+    
+    if (linkedinLink) {
+        linkedinLink.addEventListener("mouseenter", e => {
+            mouseOverride = true;
+            const rect = linkedinLink.getBoundingClientRect();
+            const bgRect = bg.getBoundingClientRect();
+            relX = rect.left - bgRect.left + rect.width / 2;
+            relY = rect.top - bgRect.top + rect.height / 2;
+            RADIUS_TARGET = 70;
+            charDesign = li;
+            charSet = 1;
+        });
+
+        linkedinLink.addEventListener("mouseleave", e => {
+            RADIUS_TARGET = 110;
+            mouseOverride = false;
+            charSet = 0;
+        });
+    }
 });
 
 window.addEventListener("resize", resize);
