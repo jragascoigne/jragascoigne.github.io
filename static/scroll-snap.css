@@ -1,7 +1,4 @@
-/* Non-destructive scroll-snap stylesheet to avoid modifying existing CSS files */
-
 html, body {
-    /* allow page scrolling despite original stylesheet's overflow:hidden */
     overflow: auto !important;
     height: 100%;
 }
@@ -16,17 +13,13 @@ html, body {
 }
 
 .section {
-    min-height: 100vh;
-    scroll-snap-align: start;
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 100%;
-    box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Ensure social container sits inside sections and is visible */
 .section .social-container {
     position: absolute;
     bottom: 20px;

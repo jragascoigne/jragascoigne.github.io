@@ -8,36 +8,56 @@
     <link rel="stylesheet" href="/static/portfolio-grom/portfolio-grom.css">
 </head>
 <body>
-    <div id="ascii-bg"></div>
+    <div class="section">
+        <canvas id="ascii-bg"></canvas>
 
-    <div class="main-wrapper">
-        <h1>Hi, I'm John Gascoigne</h1><br>
-        <h2>I'm a third year Computer Science student studying at the University of Canterbury.</h2>
-        <h2>I have experience in web development and software engineering.</h2>
-        <h2>I love football, music and movies.</h2>
+        <div class="main-wrapper">
+            <h1>Hi, I'm John Gascoigne</h1><br>
+            <h2>I'm a third year Computer Science student studying at the University of Canterbury.</h2>
+            <h2>I have experience in web development and software engineering.</h2>
+            <h2>I love football, music and movies.</h2>
+        </div>
+        <div class="social-container">
+            <a class="social-link" href="https://github.com/jragascoigne" target="_blank" id="github-link">
+                <i class="icon-github social-icon use-line-height"></i>
+            </a>
+            <a class="social-link" href="https://linkedin.com/in/john-gascoigne" target="_blank" id="linkedin-link">
+                <i class="icon-linkedin social-icon use-line-height"></i>
+            </a>
+        </div>
     </div>
-    <div class="social-container">
-        <a class="social-link" href="https://github.com/jragascoigne" target="_blank" id="github-link">
-            <i class="icon-github social-icon use-line-height"></i>
-        </a>
-        <a class="social-link" href="https://linkedin.com/in/john-gascoigne" target="_blank" id="linkedin-link">
-            <i class="icon-linkedin social-icon use-line-height"></i>
-        </a>
+
+    <div class="section">
+        <div class="main-wrapper">
+            <h1>Hi, I'm John Gascoigne</h1><br>
+            <h2>I'm a third year Computer Science student studying at the University of Canterbury.</h2>
+            <h2>I have experience in web development and software engineering.</h2>
+            <h2>I love football, music and movies.</h2>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="main-wrapper">
+            <h1>Hi, I'm John Gascoigne</h1><br>
+            <h2>I'm a third year Computer Science student studying at the University of Canterbury.</h2>
+            <h2>I have experience in web development and software engineering.</h2>
+            <h2>I love football, music and movies.</h2>
+        </div>
     </div>
 
     <div class="sidebar">
         <div class="sidebar-section">
             <ul class="sidebar-section-list">
                 <li class="sidebar-section-list-item">
+                    <div class="vl selected"></div>
                     <div class="vl"></div>
                     <div class="vl"></div>
-                    <div class="vl"></div>
-
                 </li>
             </ul>
         </div>
     </div>
-    <script type="module" src="/static/ascii-bg.js"></script>
 
+    <script type="module" src="/static/ascii-bg.js"></script>
+    <script src="/static/scroll-snap.js"></script>
 </body>
 </html>

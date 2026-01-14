@@ -1,16 +1,26 @@
 import { gh, li } from './ascii-logos.js';
 
-
-const bg = document.getElementById("ascii-bg");
+const canvas = document.getElementById("ascii-bg");
+const ctx = canvas.getContext("2d");
 
 const chars = ".,-~=+o*%@#:l|";
+const charIndex = {};
+[...chars].forEach((c, i) => charIndex[c] = i);
+
+const CELL_W = 6.6;
+const CELL_H = 11;
+const FADE_SPEED = 0.96;
 let RADIUS = 110;
 let RADIUS_TARGET = 110;
-const FADE_SPEED = 0.96;
 const GRID_WIDTH_RATIO = 0.4;
 
-let cols, rows;
+let rows, cols;
 let heat = [];
+let staticChars = [];
+let renderChars = [];
+let bgChars = [];
+let rowWidths = [];
+
 let mouseCol = -999;
 let mouseRow = -999;
 let targetCol = -999;
@@ -21,35 +31,33 @@ let relX = 0;
 let relY = 0;
 
 let charSet = 0;
-
-const CELL_W = 6.6;
-const CELL_H = 11;
-
-
-
 let charDesign = gh;
 
-
-
-let staticChars = [];
-let renderChars = [];
-let bgChars = [];
-
-let rowWidths = [];
-
 function resize() {
-    rows = Math.ceil(window.innerHeight / CELL_H) + 2;
+    const dpr = window.devicePixelRatio || 1;
+    const cssW = window.innerWidth;
+    const cssH = window.innerHeight;
 
-    cols = Math.floor((window.innerWidth * GRID_WIDTH_RATIO) / CELL_W);
+    canvas.style.width = cssW + "px";
+    canvas.style.height = cssH + "px";
+    canvas.width = Math.floor(cssW * dpr);
+    canvas.height = Math.floor(cssH * dpr);
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.font = `${CELL_H}px monospace`;
+    ctx.textBaseline = "top";
+    ctx.imageSmoothingEnabled = false;
+
+    rows = Math.ceil(cssH / CELL_H) + 2;
+    cols = Math.floor((cssW * GRID_WIDTH_RATIO) / CELL_W);
 
     heat = Array.from({ length: rows }, () => new Float32Array(cols));
-    
     staticChars = [];
     renderChars = [];
     bgChars = [];
+    rowWidths = [];
 
     for (let y = 0; y < rows; y++) {
-
         staticChars[y] = [];
         renderChars[y] = [];
         bgChars[y] = [];
@@ -58,167 +66,114 @@ function resize() {
         for (let x = 0; x < cols; x++) {
             staticChars[y][x] = chars[Math.floor(Math.random() * 8)];
             renderChars[y][x] = chars[0];
-
-            let targetCharIndex = (x**y) % 3;
-            if (targetCharIndex < 1) targetCharIndex = 0;
-            bgChars[y][x] = targetCharIndex;
-
+            bgChars[y][x] = (x ** y) % 3;
         }
-        
     }
-    
 }
 
+window.addEventListener("resize", resize);
+resize();
+
+window.addEventListener("mousemove", (e) => {
+    const rect = canvas.getBoundingClientRect();
+    if (!mouseOverride) {
+        relX = e.clientX - rect.left;
+        relY = e.clientY - rect.top;
+    }
+    targetCol = Math.floor(relX / CELL_W);
+    targetRow = Math.floor(relY / CELL_H);
+});
+
 function render() {
-
     RADIUS += (RADIUS_TARGET - RADIUS) * 0.1;
-
     mouseCol += (targetCol - mouseCol) * 0.2;
     mouseRow += (targetRow - mouseRow) * 0.2;
 
-    let output = "";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     const radiusSq = RADIUS * RADIUS;
     const mousePixelX = mouseCol * CELL_W;
     const mousePixelY = mouseRow * CELL_H;
 
+    const charCredits = 'jra.onl|c|john|gascoigne|2026!'.split('').reverse().join('');
+
     for (let y = 0; y < rows; y++) {
+        const py = y * CELL_H;
         for (let x = 0; x < cols; x++) {
-            const pixelX = x * CELL_W;
-            const pixelY = y * CELL_H;
-            
-            const dx = pixelX - mousePixelX;
-            const dy = pixelY - mousePixelY;
+
+            const px = canvas.width / (window.devicePixelRatio || 1) - (cols - x) * CELL_W;
+
+            const dx = px - mousePixelX;
+            const dy = py - mousePixelY;
             const distSq = dx * dx + dy * dy;
 
-            if (distSq < radiusSq) {
-                heat[y][x] = 1;
-            }
-
+            if (distSq < radiusSq) heat[y][x] = 1;
             heat[y][x] *= FADE_SPEED;
 
             const intensity = heat[y][x];
+            // if (intensity < 0.01) continue;
 
-            let baseCharIndex = 0;
-            let charTarget = staticChars;
-            
-            if (charSet === 1) {
-                charTarget = charDesign;
+            let baseIndex = charIndex[renderChars[y][x]] ?? 0;
+            let targetIndex = 0;
+
+            const charTarget = charSet === 1 ? charDesign : bgChars;
+            if (charTarget?.[y]?.[x]) {
+                const t = charTarget[y][x];
+                targetIndex = typeof t === "string" ? (charIndex[t] ?? 0) : t;
             }
 
-            if (y < renderChars.length && x < renderChars[0].length) {
-                renderChars[y][x] 
-                baseCharIndex = chars.indexOf(renderChars[y][x]);
-                if (baseCharIndex === -1) baseCharIndex = 0;
+            if (baseIndex < targetIndex) baseIndex++;
+            else if (baseIndex > targetIndex) baseIndex--;
 
-                let targetCharIndex = 0;
-                
-                if (y < bgChars.length && x < bgChars[0].length) {
-                    targetCharIndex = bgChars[y][x];
-                }
+            renderChars[y][x] = chars[baseIndex];
 
-                if (y < charTarget.length && x < charTarget[0].length) {
-                    targetCharIndex = chars.indexOf(charTarget[y][x]);
-                    if (targetCharIndex === -1) targetCharIndex = 0;
-                }
-                
-                if (baseCharIndex < targetCharIndex) {
-                    renderChars[y][x] = chars[baseCharIndex + 1];
-                } else if (baseCharIndex > targetCharIndex) {
-                    renderChars[y][x] = chars[baseCharIndex - 1];
-                }
-            }
-            
             const densityShift = Math.floor(intensity * (chars.length - 1));
-            const charIndex = Math.min(chars.length - 1, baseCharIndex + densityShift);
-            let char = chars[charIndex];
-            
-            let charCredits = 'jra.onl|c|john|gascoigne|2026!';
-            charCredits = charCredits.split('').reverse().join('');
+            const finalIndex = Math.min(chars.length - 1, baseIndex + densityShift);
+            let char = chars[finalIndex];
 
-            if (y === 1 && x >= cols - 1 - (charCredits.length - 1)) {
+            if (y === 1 && x >= cols - charCredits.length) {
                 char = charCredits[cols - 1 - x];
             }
 
-            if (x < rowWidths[y]) {
-                char = " ";
-            }
+            if (x < rowWidths[y]) continue;
 
             const base = 60;
-            const r = Math.floor(base + (154 - base) * intensity);
-            const g = Math.floor(base + (151 - base) * intensity);
-            const b = Math.floor(base + (239 - base) * intensity);
+            const r = base + (154 - base) * intensity;
+            const g = base + (151 - base) * intensity;
+            const b = base + (239 - base) * intensity;
 
-            output += `<span style="color:rgb(${r},${g},${b})">${char}</span>`;
+            ctx.fillStyle = `rgb(${r|0},${g|0},${b|0})`;
+            ctx.fillText(char, px, py);
         }
-        output += "\n";
     }
 
-    bg.innerHTML = output;
     requestAnimationFrame(render);
 }
 
+render();
 
-
-window.addEventListener("mousemove", e => {
-    const rect = bg.getBoundingClientRect();
-
-    if (mouseOverride == false) {
-        relX = e.clientX - rect.left;
-        relY = e.clientY - rect.top;
-    }
-
-    const gridLeft = rect.width - (cols * CELL_W);
-
-        targetCol = Math.floor((relX - gridLeft) / CELL_W);
-        targetRow = Math.floor(relY / CELL_H);
-});
-
-document.addEventListener("DOMContentLoaded", e => {
+document.addEventListener("DOMContentLoaded", () => {
     const githubLink = document.getElementById("github-link");
     const linkedinLink = document.getElementById("linkedin-link");
-    
-    resize();
-    
-    if (githubLink) {
-        githubLink.addEventListener("mouseenter", e => {
+
+    function bind(link, design) {
+        if (!link) return;
+        link.addEventListener("mouseenter", () => {
             mouseOverride = true;
-            const rect = githubLink.getBoundingClientRect();
-            const bgRect = bg.getBoundingClientRect();
-            relX = rect.left - bgRect.left + rect.width / 2;
-            relY = rect.top - bgRect.top + rect.height / 2;
-            RADIUS_TARGET = 70;
-            charDesign = gh;
+            const rect = link.getBoundingClientRect();
+            const canvasRect = canvas.getBoundingClientRect();
+            relX = rect.left - canvasRect.left + rect.width / 2;
+            relY = rect.top - canvasRect.top + rect.height / 2;
+            RADIUS_TARGET = 80;
+            charDesign = design;
             charSet = 1;
         });
-
-        githubLink.addEventListener("mouseleave", e => {
+        link.addEventListener("mouseleave", () => {
             RADIUS_TARGET = 110;
             mouseOverride = false;
             charSet = 0;
         });
     }
-    
-    if (linkedinLink) {
-        linkedinLink.addEventListener("mouseenter", e => {
-            mouseOverride = true;
-            const rect = linkedinLink.getBoundingClientRect();
-            const bgRect = bg.getBoundingClientRect();
-            relX = rect.left - bgRect.left + rect.width / 2;
-            relY = rect.top - bgRect.top + rect.height / 2;
-            RADIUS_TARGET = 70;
-            charDesign = li;
-            charSet = 1;
-        });
-
-        linkedinLink.addEventListener("mouseleave", e => {
-            RADIUS_TARGET = 110;
-            mouseOverride = false;
-            charSet = 0;
-        });
-    }
+    bind(githubLink, gh);
+    bind(linkedinLink, li);
 });
-
-window.addEventListener("resize", resize);
-
-
-render();
