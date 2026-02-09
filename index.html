@@ -8,43 +8,6 @@
     <link rel="stylesheet" href="/static/portfolio-grom/portfolio-grom.css">
 </head>
 <body>
-    <div class="section">
-        <canvas id="ascii-bg"></canvas>
-
-        <div class="main-wrapper">
-            <h1>Hi, I'm John Gascoigne</h1><br>
-            <h2>I'm a third year Computer Science student studying at the University of Canterbury.</h2>
-            <h2>I have experience in web development and software engineering.</h2>
-            <h2>I love football, music and movies.</h2>
-        </div>
-        <div class="social-container">
-            <a class="social-link" href="https://github.com/jragascoigne" target="_blank" id="github-link">
-                <i class="icon-github social-icon use-line-height"></i>
-            </a>
-            <a class="social-link" href="https://linkedin.com/in/john-gascoigne" target="_blank" id="linkedin-link">
-                <i class="icon-linkedin social-icon use-line-height"></i>
-            </a>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="main-wrapper">
-            <h1>Hi, I'm John Gascoigne</h1><br>
-            <h2>I'm a third year Computer Science student studying at the University of Canterbury.</h2>
-            <h2>I have experience in web development and software engineering.</h2>
-            <h2>I love football, music and movies.</h2>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="main-wrapper">
-            <h1>Hi, I'm John Gascoigne</h1><br>
-            <h2>I'm a third year Computer Science student studying at the University of Canterbury.</h2>
-            <h2>I have experience in web development and software engineering.</h2>
-            <h2>I love football, music and movies.</h2>
-        </div>
-    </div>
-
     <div class="sidebar">
         <div class="sidebar-section">
             <ul class="sidebar-section-list">
@@ -57,6 +20,90 @@
         </div>
     </div>
 
+    <div class="section-container">
+        <div class="section">
+            <div class="ascii-bg">
+                <canvas id="ascii-bg"></canvas>
+            </div>
+
+            <div class="main-wrapper title-card">
+                <img src="static/img/image.png" alt="Profile Picture" class="profile-pic">
+                <h1>Hi, I'm John Gascoigne</h1><br>
+                <span>I'm a third year Computer Science student studying at the University of Canterbury.</span>
+                <span>I have experience in web development and software engineering.</span>
+                <span>I love football, music and movies.</span>
+            </div>
+            <div class="social-container">
+                <a class="social-link" href="https://github.com/jragascoigne" target="_blank" id="github-link">
+                    <i class="icon-github social-icon use-line-height"></i>
+                </a>
+                <a class="social-link" href="https://linkedin.com/in/john-gascoigne" target="_blank" id="linkedin-link">
+                    <i class="icon-linkedin social-icon use-line-height"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="main-wrapper two-column">
+
+                <div class="project-container">
+                    <h1>Projects</h1>
+                    <div class="project">
+                        <h2>Compiler</h2>
+                        <div class="skill-tokens">
+                            <span class="skill-token yellow">Python</span>
+                        </div>
+                        <div class="project-description">
+                            A simple compiler implemented in Python.
+                        </div>
+                    </div>
+                
+                    <div class="project">
+                        <h2>Train Game</h2>
+                        <div class="skill-tokens">
+                            <span class="skill-token blue">React</span>
+                            <span class="skill-token purple">Vite</span>
+                            <span class="skill-token yellow">JavaScript</span>
+                        </div>
+                        <div class="project-description">
+                            A train number math game inspired by the Sydney trains, built using React, Vite, and JavaScript.
+                        </div>
+                    </div>
+
+                    <div class="project">
+                        <h2>This Website</h2>
+                        <div class="skill-tokens">
+                            <span class="skill-token orange">HTML</span>
+                            <span class="skill-token lblue">CSS</span>
+                            <span class="skill-token yellow">JavaScript</span>
+                        </div>
+                        <div class="project-description">
+                            My portfolio website built with HTML, CSS, and JavaScript.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="skills-container">
+                    <h1>Skills</h1><br>
+                    <h2>Web Development: HTML, CSS, JavaScript, React</h2>
+                    <h2>Software Engineering: Python, Java</h2>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="main-wrapper">
+                <h1>Get in touch</h1><br>
+                <h2>Reach out on  <a href="https://linkedin.com/in/john-gascoigne" target="_blank">↗ LinkedIn</a></h2>
+                <h2>Find me on <a href="https://github.com/jragascoigne" target="_blank">↗ GitHub</a></h2>
+                <h2 style="text-align: center;"> or </h2>
+                <h2>Email me at jragascoigne@gmail.com</h2>
+            </div>
+        </div>
+    </div>
     <script type="module" src="/static/ascii-bg.js"></script>
     <script src="/static/scroll-snap.js"></script>
 </body>

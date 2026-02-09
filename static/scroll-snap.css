@@ -1,5 +1,5 @@
 html, body {
-    overflow: auto !important;
+    overflow: hidden;
     height: 100%;
 }
 
@@ -20,8 +20,9 @@ html, body {
   align-items: center;
 }
 
-.section .social-container {
-    position: absolute;
+.project-container {
+    padding: 20px;
+    outline: 2px solid var(--accent-color);
     bottom: 20px;
     right: 20px;
     background-color: var(--bg-color);
