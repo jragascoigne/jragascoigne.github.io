@@ -36,25 +36,30 @@
     font-weight: 400;
     box-sizing: border-box;
     color: var(--text-color);
+
+    font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
 a {
     text-decoration: none;
 }
 
+h1 {
+    font-weight: 700;
+}
+
 h1, h2 {
-    font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
     letter-spacing: -1px;
-    color: var(--style-color)
+    color: var(--style-color);
 }
 
 h2 {
+    font-weight: 600;
     color: var(--text-color);
 }
 
 h3 {
-    font-family: Arial, Helvetica, sans-serif;
     color: var(--style-color);
     margin-bottom: 8px;
 }
@@ -90,7 +95,6 @@ html, body {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
     background: var(--bg-color);
-    font-family: monospace;
 }
 
 .section {
@@ -102,7 +106,7 @@ html, body {
     scroll-snap-align: start;
     scroll-snap-stop: always;
     position: relative;
-    padding: 80px 40px;
+    padding: 80px 80px 80px 40px;
 
     width: 100%;
 }
@@ -227,11 +231,11 @@ body {
     }
 }
 
-.project-container {
+.project-container, .skills-container {
     align-content: right;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 8px;
 }
 
 .project {
@@ -301,52 +305,73 @@ body {
 
 .skill-tokens {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 8px;
     flex-direction: row;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
-.skill-token {
+.skill-token, .skill-token-bar {
+    font-family: monospace;
+    font-weight: 500;
     font-size: 0.8rem;
     opacity: 70%;
     background-color: var(--style-color);
     color: var(--bg-color);
 
-    clip-path: polygon(calc(10px) 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%); /* Example: A triangle */
+    clip-path: polygon(calc(10px) 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
 
-    padding: 4px 16px 4px 16px;
+    padding: 4px 18px;
+    padding-left: 16px;
     margin-left: -16px;
 }
 
-.skill-token.yellow {
-    background-color: yellow
+.skill-token.fixed-width {
+    min-width: 120px;
 }
-
-.skill-token.blue {
-    background-color: rgb(98, 119, 255);
-}
-
-.skill-token.purple {
-    background-color: rgb(160, 79, 253);
-}
-
-
-.skill-token.lblue {
-    background-color: rgb(0, 191, 255)
-}
-
-
-.skill-token.orange {
-    background-color: rgb(255, 85, 0)
-}
-
 
 
 .skill-token:first-child {
     clip-path: polygon(0% 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
     margin: 0;
     padding-left: 12px;
+}
+
+
+.skill-token-bar:last-child {
+    clip-path: polygon(calc(10px) 0%, 100% 0%, 100% 100%, 0% 100%);
+    padding-right: 6px;
+    background-color: var(--text-color);
+}
+
+.skill-token-bar {
+    padding: 4px 12px;
+    background-color: var(--text-color);
+}
+
+.skill-token-bar.locked {
+    background-color: var(--outline-color);
+}
+
+.skill-token.yellow {
+    background-color: rgb(255, 220, 80)
+}
+
+.skill-token.blue {
+    background-color: rgb(135, 151, 255);
+}
+
+.skill-token.purple {
+    background-color: #b27eff;
+}
+
+.skill-token.lblue {
+    background-color: rgb(154, 230, 255)
+}
+
+
+.skill-token.orange {
+    background-color: rgb(247, 150, 101)
 }
 
 .profile-pic {
@@ -358,8 +383,18 @@ body {
     margin-bottom: 16px;
 }
 
-.skills-container {
+.skills-list {
     display: flex;
     flex-direction: column;
+    gap: 0px;
+}
 
+.vl {
+    font-family: monospace;
+    font-size: 0.6rem;
+    padding: 4px 0;
+}
+
+.accent {
+    color: var(--style-color);
 }

@@ -12,9 +12,9 @@
         <div class="sidebar-section">
             <ul class="sidebar-section-list">
                 <li class="sidebar-section-list-item">
-                    <div class="vl selected">. . hi ...</div>
-                    <div class="vl">. . p / s</div>
-                    <div class="vl">. . g. i..  t.</div>
+                    <div class="vl selected">hey</div>
+                    <div class="vl">p/s</div>
+                    <div class="vl">git</div>
                 </li>
             </ul>
         </div>
@@ -29,9 +29,9 @@
             <div class="main-wrapper title-card">
                 <img src="static/img/image.png" alt="Profile Picture" class="profile-pic">
                 <h1>Hi, I'm John Gascoigne</h1><br>
-                <span>I'm a third year Computer Science student studying at the University of Canterbury.</span>
-                <span>I have experience in web development and software engineering.</span>
-                <span>I love football, music and movies.</span>
+                <span>I'm a third year <span class="accent">Computer Science</span> student studying at the <span class="accent">University of Canterbury</span>.</span>
+                <span>I have experience in <span class="accent">web development</span> and <span class="accent">software engineering</span>.</span>
+                <span>I love <span class="accent">football</span>, <span class="accent">music</span> and <span class="accent">movies</span>.</span>
             </div>
             <div class="social-container">
                 <a class="social-link" href="https://github.com/jragascoigne" target="_blank" id="github-link">
@@ -49,12 +49,12 @@
                 <div class="project-container">
                     <h1>Projects</h1>
                     <div class="project">
-                        <h2>Compiler</h2>
+                        <h2>Compiler / Parser</h2>
                         <div class="skill-tokens">
                             <span class="skill-token yellow">Python</span>
                         </div>
                         <div class="project-description">
-                            A simple compiler implemented in Python.
+                            A simple compiler written in Python, parsing custom syntax into executable Python code.
                         </div>
                     </div>
                 
@@ -62,11 +62,23 @@
                         <h2>Train Game</h2>
                         <div class="skill-tokens">
                             <span class="skill-token blue">React</span>
-                            <span class="skill-token purple">Vite</span>
                             <span class="skill-token yellow">JavaScript</span>
+                            <span class="skill-token purple">Vite</span>
                         </div>
                         <div class="project-description">
                             A train number math game inspired by the Sydney trains, built using React, Vite, and JavaScript.
+                        </div>
+                    </div>
+
+                    <div class="project">
+                        <h2>Pomo Timer</h2>
+                        <div class="skill-tokens">
+                            <span class="skill-token blue">React</span>
+                            <span class="skill-token blue">Typescript</span>
+                            <span class="skill-token purple">Vite</span>
+                        </div>
+                        <div class="project-description">
+                            A pomodoro timer to help me keep ontop of my tasks.
                         </div>
                     </div>
 
@@ -85,17 +97,52 @@
                 <div class="skills-container">
                     <h1>Skills</h1>
                     <div class="skills-list">
-                        <div class="skill-item"><span class="skill-token orange">HTML</span></div>
-                        <div class="skill-item"><span class="skill-token lblue">CSS</span></div>
-                        <div class="skill-item"><span class="skill-token yellow">JavaScript</span></div>
-                        <div class="skill-item"><span class="skill-token blue">React</span></div>
-                        <div class="skill-item"><span class="skill-token purple">Vite</span></div>
-                        <div class="skill-item"><span class="skill-token green">Python</span></div>
-
-                        Programs:
-                        Figma
-                        
+                        <div class="skill-tokens">
+                            <span class="skill-token fixed-width orange">HTML</span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                        </div>
+                        <div class="skill-tokens"><span class="skill-token fixed-width lblue">CSS</span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                        </div>
+                        <div class="skill-tokens"><span class="skill-token fixed-width yellow">JavaScript</span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar locked"></span>
+                        </div>
+                        <div class="skill-tokens"><span class="skill-token fixed-width green">Python</span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar locked"></span>
+                        </div>
+                        <div class="skill-tokens"><span class="skill-token fixed-width blue">React</span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar locked"></span>
+                            <span class="skill-token-bar locked"></span>
+                        </div>
+                        <div class="skill-tokens"><span class="skill-token fixed-width purple">Vite</span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar"></span>
+                            <span class="skill-token-bar locked"></span>
+                            <span class="skill-token-bar locked"></span>
+                            <span class="skill-token-bar locked"></span>
+                        </div>
                     </div>
+                    <h1>Programs</h1>
+                    Figma, Illustrator, M365
                 </div>
 
             </div>
@@ -104,10 +151,10 @@
         <div class="section">
             <div class="main-wrapper">
                 <h1>Get in touch</h1><br>
-                <h2>Reach out on  <a href="https://linkedin.com/in/john-gascoigne" target="_blank">↗ LinkedIn</a></h2>
-                <h2>Find me on <a href="https://github.com/jragascoigne" target="_blank">↗ GitHub</a></h2>
-                <h2 style="text-align: center;"> or </h2>
-                <h2>Email me at jragascoigne@gmail.com</h2>
+                <span>Reach out on  <a class="accent" href="https://linkedin.com/in/john-gascoigne" target="_blank">↗ LinkedIn</a></span>
+                <span>Find me on <a class="accent" href="https://github.com/jragascoigne" target="_blank">↗ GitHub</a></span>
+                <span style="text-align: center;"> or </span>
+                <span>Email me at <a class="accent" href="mailto:jragascoigne@gmail.com">jragascoigne@gmail.com</a></span>
             </div>
         </div>
     </div>
