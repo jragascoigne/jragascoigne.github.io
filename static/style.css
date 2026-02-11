@@ -17,6 +17,15 @@
     --style-color: rgb(154, 151, 239);
 }
 
+* {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
 @media (prefers-color-scheme: dark) {
     :root {
         /* Dark mode */
