@@ -312,13 +312,21 @@ body {
     background: linear-gradient(180deg, transparent 80%, var(--bg-color) 100%);
 }
 
+.skills-container {
+    width: 100%;
+    max-width: 400px;
+}
+
 .skill-tokens {
+    position: relative;
     display: flex;
     flex-wrap: nowrap;
     gap: 8px;
     flex-direction: row;
     margin-bottom: 2px;
+
 }
+
 
 .skill-token, .skill-token-bar {
     font-family: monospace;
@@ -406,4 +414,50 @@ body {
 
 .accent {
     color: var(--style-color);
+}
+
+ .hover-popup {
+    position: relative;
+    cursor: help;
+}
+
+.hover-popup:hover {
+    text-decoration: underline var(--style-color);
+}
+
+.hover-popup::after {
+    font-family: consolas, monospace;
+
+    content: attr(data-popup);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--text-color-dim);
+    padding: 8px 12px;
+    margin-top: 24px;
+    border-radius: 8px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.hover-popup::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1001;
+}
+
+.hover-popup:hover::after,
+.hover-popup:hover::before {
+    opacity: 1;
 }
