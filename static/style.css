@@ -57,6 +57,18 @@ h1 {
     font-weight: 700;
 }
 
+h1.hello-title-wrapper {
+    max-height: 2rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.hello-title {
+    font-weight: 700;
+    color: var(--style-color);
+    letter-spacing: -1px;
+}
+
 h1, h2 {
     margin: 0px;
     letter-spacing: -1px;
