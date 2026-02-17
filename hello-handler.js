@@ -1,26 +1,53 @@
 const helloTitle = document.getElementById('hello-title')
 
-const helloWordsList = ['Hi', 'Hey', 'Hello', 'こんにちは', 'Bonjour']
-let index = 0;
+const helloWordsList = ['Hi,', 'Hey,', 'Hello,', 'こんにちは,', 'Bonjour,']
 
-let typewriterInd = 0;
 let lastTypeTime = 0;
+const typeSpeed = 125; // ms per character
+
 let lastUpdateTime = 0;
-const typeSpeed = 50; // ms per character
-const updateInterval = 4000; // ms between words
+const updateInterval = 1500; // ms between words
+
+let lastWordEndTime = 0;
+const betweenWordsInterval = 500;
+
+// Hello is default
+let typeIn = false;
+let index = 2;
+let typewriterInd = helloWordsList[index].length;
+
+setAnimatedWidth(helloWordsList[index].substring(0, typewriterInd));
 
 function typeWriter(timestamp) {
     if (timestamp - lastTypeTime >= typeSpeed) {
-        if (typewriterInd < helloWordsList[index].length) {
-            helloTitle.innerHTML += helloWordsList[index].charAt(typewriterInd);
-            typewriterInd++;
-            lastTypeTime = timestamp;
+        if (typewriterInd >= helloWordsList[index].length && typeIn) {
+            typeIn = false;
+            lastUpdateTime = timestamp
         }
-    }
 
-    if (timestamp - lastUpdateTime >= updateInterval && typewriterInd >= helloWordsList[index].length) {
-        updateHelloLabel();
-        lastUpdateTime = timestamp;
+        if (timestamp - lastUpdateTime >= updateInterval) {
+            if (typeIn) {
+                typewriterInd++;
+                setAnimatedWidth(helloWordsList[index], typewriterInd);
+                lastTypeTime = timestamp;
+            } else {
+                if (typewriterInd > 0) {
+                    typewriterInd--;
+                    setAnimatedWidth(helloWordsList[index], typewriterInd, true);
+
+                    lastTypeTime = timestamp;
+                } else {
+                    if (typewriterInd === 0) {
+                        typewriterInd = -1;
+                        lastWordEndTime = timestamp;
+                    }
+
+                    if (timestamp - lastWordEndTime >= betweenWordsInterval) {
+                        updateHelloLabel();
+                    }
+                }
+            }
+        }
     }
 
     requestAnimationFrame(typeWriter);
@@ -37,9 +64,40 @@ const updateHelloLabel = () => {
     if (index >= helloWordsList.length) {
         index = 0;
     }
+    
+    typewriterInd = 1;
+    setAnimatedWidth(helloWordsList[index], typewriterInd, true);
 
-    helloTitle.innerHTML = '';
-    typewriterInd = 0;
+    typeIn = true;
 }
+
+function setAnimatedWidth(fullText, index=typewriterInd, decreasing=false) {
+    const target = fullText.substring(0, index);
+
+    helloTitle.textContent = target;
+
+    label = document.createElement("span");
+    document.body.appendChild(label);
+
+    label.style.fontWeight = '700';
+    label.style.letterSpacing = '-1px';
+
+    label.style.display = 'inline-block';
+    label.style.position = 'absolute';
+    label.style.whiteSpace = 'no-wrap';
+    label.style.fontSize = '2rem';
+    
+    // if (target !== '' && !decreasing) {
+    label.textContent = target;
+    // } else label.textContent = '';
+
+    width = Math.ceil(label.clientWidth);
+    formattedWidth = width + "px";
+
+    helloTitle.style.width = formattedWidth;
+
+    document.body.removeChild(label);
+}
+
 
 requestAnimationFrame(typeWriter);

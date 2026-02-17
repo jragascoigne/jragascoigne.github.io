@@ -67,7 +67,16 @@ h1.hello-title-wrapper {
     font-weight: 700;
     color: var(--style-color);
     letter-spacing: -1px;
+
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+
+    width: 0;
+    min-width: 0;
+    transition: width 150ms linear;
 }
+
 
 h1, h2 {
     margin: 0px;
