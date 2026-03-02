@@ -510,3 +510,14 @@ body {
 .hover-popup:hover::before {
     opacity: 1;
 }
+
+.selected:hover {
+    outline: 2px solid var(--style-color);
+    transition: outline 0.15s ease-in;
+    cursor: help;
+}
+
+.selected .project-title::before {
+    margin-right: 8px;
+    content: "↗";
+}

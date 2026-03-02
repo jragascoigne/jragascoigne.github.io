@@ -1,13 +1,19 @@
 const projects = document.querySelectorAll('.project');
 
-
-
 for (const project of projects) {
-    project.addEventListener('click', () => {
-        for (const op of projects) {
-            op.classList.remove('selected');
-        }
+  project.addEventListener('click', () => {
+    const wasSelected = project.classList.contains('selected');
 
-        project.classList.add('selected');
-    });
+    for (const op of projects) {
+      op.classList.remove('selected');
+    }
+
+    if (wasSelected) {
+      const url = project.dataset.url;
+      if (url) window.open(url, '_blank');
+      return;
+    }
+
+    project.classList.add('selected');
+  });
 }
