@@ -10,6 +10,7 @@ for (const project of projects) {
 
     if (wasSelected) {
       const url = project.dataset.url;
+      project.classList.add('selected');
       if (url) window.open(url, '_blank');
       return;
     }
