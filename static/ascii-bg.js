@@ -33,6 +33,12 @@ let relY = 0;
 let charSet = 0;
 let charDesign = gh;
 
+// Hoisted out of render loop
+const charCredits = 'jra.onl|c|john|gascoigne|2026!'.split('').reverse().join('');
+
+// Offscreen canvas removed — drawImage with DPR scaling caused blank output.
+// Batching is done in-place on the main context instead.
+
 function resize() {
     const dpr = window.devicePixelRatio || 1;
     const cssW = window.innerWidth;
@@ -84,6 +90,27 @@ window.addEventListener("mousemove", (e) => {
     targetRow = Math.floor(relY / CELL_H);
 });
 
+// Colour quantisation — bucket into N discrete levels to minimise fillStyle changes
+const COLOR_LEVELS = 24;
+
+function quantiseIntensity(intensity) {
+    return Math.round(intensity * (COLOR_LEVELS - 1)) / (COLOR_LEVELS - 1);
+}
+
+function intensityToColour(intensity) {
+    const base = 60;
+    const r = (base + (154 - base) * intensity) | 0;
+    const g = (base + (151 - base) * intensity) | 0;
+    const b = (base + (239 - base) * intensity) | 0;
+    return `rgb(${r},${g},${b})`;
+}
+
+// Pre-build colour palette for all levels
+const colourPalette = [];
+for (let i = 0; i < COLOR_LEVELS; i++) {
+    colourPalette[i] = intensityToColour(i / (COLOR_LEVELS - 1));
+}
+
 function render() {
     RADIUS += (RADIUS_TARGET - RADIUS) * 0.1;
     mouseCol += (targetCol - mouseCol) * 0.2;
@@ -94,14 +121,18 @@ function render() {
     const radiusSq = RADIUS * RADIUS;
     const mousePixelX = mouseCol * CELL_W;
     const mousePixelY = mouseRow * CELL_H;
+    const canvasCssW = canvas.width / (window.devicePixelRatio || 1);
 
-    const charCredits = 'jra.onl|c|john|gascoigne|2026!'.split('').reverse().join('');
+    // Build draw list: { colourIndex, char, px, py }[]
+    // Then sort by colourIndex so we batch fillStyle changes
+    const drawCalls = [];
 
     for (let y = 0; y < rows; y++) {
         const py = y * CELL_H;
         for (let x = 0; x < cols; x++) {
+            if (x < rowWidths[y]) continue;
 
-            const px = canvas.width / (window.devicePixelRatio || 1) - (cols - x) * CELL_W;
+            const px = canvasCssW - (cols - x) * CELL_W;
 
             const dx = px - mousePixelX;
             const dy = py - mousePixelY;
@@ -111,15 +142,31 @@ function render() {
             heat[y][x] *= FADE_SPEED;
 
             const intensity = heat[y][x];
-            // if (intensity < 0.01) continue;
 
+            // Skip fully cold cells — big win on cells outside mouse radius
             let baseIndex = charIndex[renderChars[y][x]] ?? 0;
             let targetIndex = 0;
+            let inLogoBounds = false;
 
-            const charTarget = charSet === 1 ? charDesign : bgChars;
-            if (charTarget?.[y]?.[x]) {
-                const t = charTarget[y][x];
-                targetIndex = typeof t === "string" ? (charIndex[t] ?? 0) : t;
+            // Translate grid coords to logo-local coords (logo centered on mouse)
+            if (charSet === 1) {
+                const logoRows = charDesign.length;
+                const logoCols = charDesign[0]?.length ?? 0;
+                const anchorRow = Math.round(mouseRow) - Math.floor(logoRows / 2);
+                const anchorCol = Math.round(mouseCol) - Math.floor(logoCols / 2);
+                const ly = y - anchorRow;
+                const lx = x - anchorCol;
+                if (ly >= 0 && ly < logoRows && lx >= 0 && lx < logoCols) {
+                    inLogoBounds = true;
+                    const ch = charDesign[ly][lx];
+                    if (ch && ch !== ' ') targetIndex = charIndex[ch] ?? 1;
+                } else {
+                    const t = bgChars?.[y]?.[x];
+                    if (t !== undefined) targetIndex = t;
+                }
+            } else {
+                const t = bgChars?.[y]?.[x];
+                if (t !== undefined) targetIndex = t;
             }
 
             if (baseIndex < targetIndex) baseIndex++;
@@ -127,24 +174,35 @@ function render() {
 
             renderChars[y][x] = chars[baseIndex];
 
-            const densityShift = Math.floor(intensity * (chars.length - 1));
+            // Only skip if truly nothing to draw — no heat, no logo char, no credits
+            const isCreditsCell = y === 1 && x >= cols - charCredits.length;
+            const isLogoCell = inLogoBounds && targetIndex > 0;
+            if (intensity < 0.01 && baseIndex === 0 && !isCreditsCell && !isLogoCell) continue;
+
+            const effectiveIntensity = isLogoCell ? Math.max(intensity, 0.4) : intensity;
+            const densityShift = Math.floor(effectiveIntensity * (chars.length - 1));
             const finalIndex = Math.min(chars.length - 1, baseIndex + densityShift);
             let char = chars[finalIndex];
 
-            if (y === 1 && x >= cols - charCredits.length) {
+            if (isCreditsCell) {
                 char = charCredits[cols - 1 - x];
             }
 
-            if (x < rowWidths[y]) continue;
-
-            const base = 60;
-            const r = base + (154 - base) * intensity;
-            const g = base + (151 - base) * intensity;
-            const b = base + (239 - base) * intensity;
-
-            ctx.fillStyle = `rgb(${r|0},${g|0},${b|0})`;
-            ctx.fillText(char, px, py);
+            const qi = Math.round(quantiseIntensity(effectiveIntensity) * (COLOR_LEVELS - 1));
+            drawCalls.push({ qi, char, px, py });
         }
+    }
+
+    // Sort by colour bucket so we minimise fillStyle changes
+    drawCalls.sort((a, b) => a.qi - b.qi);
+
+    let lastQi = -1;
+    for (const { qi, char, px, py } of drawCalls) {
+        if (qi !== lastQi) {
+            ctx.fillStyle = colourPalette[qi];
+            lastQi = qi;
+        }
+        ctx.fillText(char, px, py);
     }
 
     requestAnimationFrame(render);
