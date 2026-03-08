@@ -1,4 +1,3 @@
-import { gh, li } from './ascii-logos.js';
 const canvas = document.getElementById("ascii-bg");
 const ctx = canvas.getContext("2d");
 
@@ -28,9 +27,6 @@ let targetRow = -999;
 let mouseOverride = false;
 let relX = 0;
 let relY = 0;
-
-let charSet = 0;
-let charDesign = gh;
 
 const charCredits = 'jra.onl|c|john|gascoigne|2026!'.split('').reverse().join('');
 
@@ -104,7 +100,18 @@ for (let i = 0; i < COLOR_LEVELS; i++) {
     colourPalette[i] = intensityToColour(i / (COLOR_LEVELS - 1));
 }
 
+let asciiVisible = true;
+
+new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        const wasVisible = asciiVisible;
+        asciiVisible = entry.isIntersecting;
+        if (!wasVisible && asciiVisible) requestAnimationFrame(render);
+    });
+}, { threshold: 0 }).observe(canvas);
+
 function render() {
+    if (!asciiVisible) return;
     RADIUS += (RADIUS_TARGET - RADIUS) * 0.1;
     mouseCol += (targetCol - mouseCol) * 0.2;
     mouseRow += (targetRow - mouseRow) * 0.2;
@@ -135,28 +142,7 @@ function render() {
             const intensity = heat[y][x];
 
             let baseIndex = charIndex[renderChars[y][x]] ?? 0;
-            let targetIndex = 0;
-            let inLogoBounds = false;
-
-            if (charSet === 1) {
-                const logoRows = charDesign.length;
-                const logoCols = charDesign[0]?.length ?? 0;
-                const anchorRow = Math.round(mouseRow) - Math.floor(logoRows / 2);
-                const anchorCol = Math.round(mouseCol) - Math.floor(logoCols / 2);
-                const ly = y - anchorRow;
-                const lx = x - anchorCol;
-                if (ly >= 0 && ly < logoRows && lx >= 0 && lx < logoCols) {
-                    inLogoBounds = true;
-                    const ch = charDesign[ly][lx];
-                    if (ch && ch !== ' ') targetIndex = charIndex[ch] ?? 1;
-                } else {
-                    const t = bgChars?.[y]?.[x];
-                    if (t !== undefined) targetIndex = t;
-                }
-            } else {
-                const t = bgChars?.[y]?.[x];
-                if (t !== undefined) targetIndex = t;
-            }
+            const targetIndex = bgChars?.[y]?.[x] ?? 0;
 
             if (baseIndex < targetIndex) baseIndex++;
             else if (baseIndex > targetIndex) baseIndex--;
@@ -164,11 +150,9 @@ function render() {
             renderChars[y][x] = chars[baseIndex];
 
             const isCreditsCell = y === 1 && x >= cols - charCredits.length;
-            const isLogoCell = inLogoBounds && targetIndex > 0;
-            if (intensity < 0.01 && baseIndex === 0 && !isCreditsCell && !isLogoCell) continue;
+            if (intensity < 0.01 && baseIndex === 0 && !isCreditsCell) continue;
 
-            const effectiveIntensity = isLogoCell ? Math.max(intensity, 0.4) : intensity;
-            const densityShift = Math.floor(effectiveIntensity * (chars.length - 1));
+            const densityShift = Math.floor(intensity * (chars.length - 1));
             const finalIndex = Math.min(chars.length - 1, baseIndex + densityShift);
             let char = chars[finalIndex];
 
@@ -176,11 +160,10 @@ function render() {
                 char = charCredits[cols - 1 - x];
             }
 
-            const qi = Math.round(quantiseIntensity(effectiveIntensity) * (COLOR_LEVELS - 1));
+            const qi = Math.round(quantiseIntensity(intensity) * (COLOR_LEVELS - 1));
             drawCalls.push({ qi, char, px, py });
         }
     }
-
 
     drawCalls.sort((a, b) => a.qi - b.qi);
 
@@ -202,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const githubLink = document.getElementById("github-link");
     const linkedinLink = document.getElementById("linkedin-link");
 
-    function bind(link, design) {
+    function bind(link) {
         if (!link) return;
         link.addEventListener("mouseenter", () => {
             mouseOverride = true;
@@ -211,15 +194,12 @@ document.addEventListener("DOMContentLoaded", () => {
             relX = rect.left - canvasRect.left + rect.width / 2;
             relY = rect.top - canvasRect.top + rect.height / 2;
             RADIUS_TARGET = 80;
-            charDesign = design;
-            charSet = 1;
         });
         link.addEventListener("mouseleave", () => {
             RADIUS_TARGET = 110;
             mouseOverride = false;
-            charSet = 0;
         });
     }
-    bind(githubLink, gh);
-    bind(linkedinLink, li);
+    bind(githubLink);
+    bind(linkedinLink);
 });

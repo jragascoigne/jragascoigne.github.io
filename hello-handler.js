@@ -27,7 +27,19 @@ function measureTextWidth(text) {
 
 setAnimatedWidth(helloWordsList[index].substring(0, typewriterInd));
 
+let helloVisible = true;
+
+new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        const wasVisible = helloVisible;
+        helloVisible = entry.isIntersecting;
+        if (!wasVisible && helloVisible) requestAnimationFrame(typeWriter);
+    });
+}, { threshold: 0 }).observe(helloTitle);
+
 function typeWriter(timestamp) {
+    if (!helloVisible) return;
+
     if (timestamp - lastTypeTime >= typeSpeed) {
         if (typewriterInd >= helloWordsList[index].length && typeIn) {
             typeIn = false;
