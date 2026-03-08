@@ -1,5 +1,4 @@
 import { gh, li } from './ascii-logos.js';
-
 const canvas = document.getElementById("ascii-bg");
 const ctx = canvas.getContext("2d");
 
@@ -33,11 +32,7 @@ let relY = 0;
 let charSet = 0;
 let charDesign = gh;
 
-// Hoisted out of render loop
 const charCredits = 'jra.onl|c|john|gascoigne|2026!'.split('').reverse().join('');
-
-// Offscreen canvas removed — drawImage with DPR scaling caused blank output.
-// Batching is done in-place on the main context instead.
 
 function resize() {
     const dpr = window.devicePixelRatio || 1;
@@ -90,7 +85,6 @@ window.addEventListener("mousemove", (e) => {
     targetRow = Math.floor(relY / CELL_H);
 });
 
-// Colour quantisation — bucket into N discrete levels to minimise fillStyle changes
 const COLOR_LEVELS = 24;
 
 function quantiseIntensity(intensity) {
@@ -105,7 +99,6 @@ function intensityToColour(intensity) {
     return `rgb(${r},${g},${b})`;
 }
 
-// Pre-build colour palette for all levels
 const colourPalette = [];
 for (let i = 0; i < COLOR_LEVELS; i++) {
     colourPalette[i] = intensityToColour(i / (COLOR_LEVELS - 1));
@@ -123,8 +116,6 @@ function render() {
     const mousePixelY = mouseRow * CELL_H;
     const canvasCssW = canvas.width / (window.devicePixelRatio || 1);
 
-    // Build draw list: { colourIndex, char, px, py }[]
-    // Then sort by colourIndex so we batch fillStyle changes
     const drawCalls = [];
 
     for (let y = 0; y < rows; y++) {
@@ -143,12 +134,10 @@ function render() {
 
             const intensity = heat[y][x];
 
-            // Skip fully cold cells — big win on cells outside mouse radius
             let baseIndex = charIndex[renderChars[y][x]] ?? 0;
             let targetIndex = 0;
             let inLogoBounds = false;
 
-            // Translate grid coords to logo-local coords (logo centered on mouse)
             if (charSet === 1) {
                 const logoRows = charDesign.length;
                 const logoCols = charDesign[0]?.length ?? 0;
@@ -174,7 +163,6 @@ function render() {
 
             renderChars[y][x] = chars[baseIndex];
 
-            // Only skip if truly nothing to draw — no heat, no logo char, no credits
             const isCreditsCell = y === 1 && x >= cols - charCredits.length;
             const isLogoCell = inLogoBounds && targetIndex > 0;
             if (intensity < 0.01 && baseIndex === 0 && !isCreditsCell && !isLogoCell) continue;
@@ -193,7 +181,7 @@ function render() {
         }
     }
 
-    // Sort by colour bucket so we minimise fillStyle changes
+
     drawCalls.sort((a, b) => a.qi - b.qi);
 
     let lastQi = -1;
