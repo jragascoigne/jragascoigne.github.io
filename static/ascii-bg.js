@@ -195,6 +195,7 @@ render();
 document.addEventListener("DOMContentLoaded", () => {
 	const githubLink = document.getElementById("github-link");
 	const linkedinLink = document.getElementById("linkedin-link");
+	const jraLink = document.querySelector(".social-container img");
 
 	function bind(link) {
 		if (!link) return;
@@ -213,4 +214,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 	bind(githubLink);
 	bind(linkedinLink);
+	bind(jraLink);
 });
