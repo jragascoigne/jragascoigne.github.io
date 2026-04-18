@@ -440,8 +440,8 @@ body {
 }
 
 .profile-pic {
-	height: 200px;
-	width: 150px;
+	height: 350px;
+	width: max-content;
 
 	filter: grayscale(100%);
 
