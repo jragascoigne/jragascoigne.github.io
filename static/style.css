@@ -443,7 +443,7 @@ body {
 	height: 350px;
 	width: max-content;
 
-	filter: grayscale(100%);
+	/* filter: grayscale(100%); */
 
 	margin-bottom: 16px;
 }
