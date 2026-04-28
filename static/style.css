@@ -142,6 +142,18 @@ body {
 	width: 100%;
 }
 
+.skills-section {
+	min-height: 100vh;
+	height: 100vh;
+	flex-direction: column;
+	justify-content: center;
+	scroll-snap-align: start;
+	scroll-snap-stop: always;
+	position: relative;
+	padding: 80px 80px 80px 40px;
+	width: 100%;
+}
+
 @media screen and (max-width: 768px) {
 	.section {
 		padding: 40px 20px;
@@ -519,4 +531,12 @@ body {
 .selected .project-title::before {
 	margin-right: 8px;
 	content: "↗";
+}
+
+.skills-list {
+	margin: 0;
+}
+
+li::marker {
+	content: "⤻   "; /* Replace with any character or emoji */
 }
