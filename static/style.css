@@ -538,5 +538,25 @@ body {
 }
 
 li::marker {
-	content: "⤻   "; /* Replace with any character or emoji */
+	content: "⤻   ";
+}
+
+.image-div {
+	position: absolute;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.image-fancy {
+	font-family: monospace;
+	margin-top: 8px;
+	color: var(--style-color);
+	align-self: flex-end;
+}
+
+.git-pic {
+	height: 90vh;
+	object-fit: cover;
 }
