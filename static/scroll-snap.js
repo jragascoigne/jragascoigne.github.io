@@ -1,31 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-	const sections = Array.from(document.querySelectorAll(".section"));
-	const vls = Array.from(document.querySelectorAll(".sidebar .vl"));
+	const panels = Array.from(document.querySelectorAll(".panel"));
 
-	if (!sections.length || !vls.length) return;
+	panels.forEach((panel) => {
+		const pages = Array.from(panel.querySelectorAll(".content-page"));
+		if (!pages.length) return;
 
-	const observer = new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					const idx = sections.indexOf(entry.target);
-					vls.forEach((v) => v.classList.remove("selected"));
-					if (vls[idx]) vls[idx].classList.add("selected");
-				}
-			});
-		},
-		{ threshold: 0.5 },
-	);
+		panel.addEventListener("scroll", () => {
+			const scrollTop = panel.scrollTop;
+			const height = panel.clientHeight;
+			const idx = Math.round(scrollTop / height);
 
-	sections.forEach((s) => observer.observe(s));
-
-	const initiallyVisible = sections.findIndex((s) => {
-		const rect = s.getBoundingClientRect();
-		return rect.top >= 0 && rect.top < window.innerHeight;
+			panel.dispatchEvent(
+				new CustomEvent("pagechange", {
+					detail: { index: idx, page: pages[idx] },
+					bubbles: true,
+				}),
+			);
+		});
 	});
-
-	if (initiallyVisible >= 0 && vls[initiallyVisible]) {
-		vls.forEach((v) => v.classList.remove("selected"));
-		vls[initiallyVisible].classList.add("selected");
-	}
 });

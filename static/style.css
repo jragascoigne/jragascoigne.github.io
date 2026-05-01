@@ -35,6 +35,12 @@ body {
 	scrollbar-width: none;
 }
 
+.header {
+	text-align: right;
+	padding: 8px;
+	font-family: monospace;
+}
+
 *::-webkit-scrollbar {
 	display: none;
 }
@@ -58,8 +64,6 @@ body {
 	font-weight: 400;
 	box-sizing: border-box;
 	color: var(--text-color);
-	overflow: hidden;
-
 	font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
@@ -79,13 +83,37 @@ a {
 	position: relative;
 }
 
-.panel {
+.content-page {
 	width: 100%;
-	height: 100%;
+	height: 100vh;
+	min-height: 100vh;
+	flex-shrink: 0;
+	scroll-snap-align: start;
 	display: flex;
-	font-size: 200px;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	overflow: hidden;
+}
+
+.panel {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
 	overflow: scroll;
+	scroll-snap-type: y mandatory;
+}
+
+.content-title {
+	font-size: 48px;
+	font-weight: 500;
+}
+
+.content-text {
+	font-size: 18px;
+}
+
+.big {
+	font-size: 200px;
 }
