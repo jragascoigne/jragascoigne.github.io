@@ -4,17 +4,23 @@ document.addEventListener("DOMContentLoaded", () => {
 	const sidebarLeft = document.getElementById("sidebar-left");
 	const sidebarRight = document.getElementById("sidebar-right");
 
-	function buildSidebar(sidebar, count) {
+	function buildSidebar(sidebar, pages) {
 		if (!sidebar) return;
 		const list = sidebar.querySelector(".sidebar-section-list-item");
 		if (!list) return;
 		list.innerHTML = "";
-		for (let i = 0; i < count; i++) {
+		pages.forEach((page, i) => {
 			const vl = document.createElement("div");
 			vl.classList.add("vl");
 			if (i === 0) vl.classList.add("selected");
+			const label = page.dataset.label;
+			if (label) {
+				const span = document.createElement("span");
+				span.textContent = label;
+				vl.appendChild(span);
+			}
 			list.appendChild(vl);
-		}
+		});
 	}
 
 	function updateSidebar(sidebar, idx) {
@@ -32,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		const sidebar = panel.id === "left" ? sidebarLeft : sidebarRight;
 
-		buildSidebar(sidebar, pages.length);
+		buildSidebar(sidebar, pages);
 
 		panel.addEventListener("scroll", () => {
 			const scrollTop = panel.scrollTop;

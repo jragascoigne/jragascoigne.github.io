@@ -64,7 +64,6 @@ body {
 * {
 	box-sizing: border-box;
 	color: var(--text-color);
-	font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -84,6 +83,7 @@ a {
 }
 
 .content-page {
+	font-family: "Inter", Arial, Helvetica, sans-serif;
 	width: 80%;
 	height: 100vh;
 	min-height: 100vh;
@@ -265,4 +265,25 @@ a {
 	display: flex;
 	flex-direction: row;
 	height: 100vh;
+}
+
+.vl {
+	font-family: monospace;
+	font-size: 0.6rem;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 8px 0px;
+}
+
+.vl.selected span {
+	color: var(--style-color);
+}
+
+.vl span {
+	background: var(--bg-color);
+	color: var(--outline-color);
+	padding: 4px 0;
+	z-index: 1;
+	position: relative;
 }
