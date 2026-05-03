@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		...right.querySelectorAll(".content-page.intro"),
 	];
 
+	const sidebarLeft = document.getElementById("sidebar-left");
+	const sidebarRight = document.getElementById("sidebar-right");
+
 	let dismissed = false;
 	let autoTimer = null;
 
@@ -49,6 +52,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		lockScroll();
 
 		allPages.forEach((el) => el.classList.remove("hidden"));
+
+		setTimeout(() => {
+			if (sidebarLeft) sidebarLeft.style.opacity = "1";
+			if (sidebarRight) sidebarRight.style.opacity = "1";
+		}, 800);
 
 		const pageH = left.clientHeight;
 		left.scrollTo({ top: pageH, behavior: "smooth" });
