@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const rightPages = right.querySelectorAll(".content-page");
 	if (!leftPages.length || !rightPages.length) return;
 
-	const TARGET_PAGE = 1;
 	const INTRO_PAGES = [
 		...left.querySelectorAll(".content-page.intro"),
 		...right.querySelectorAll(".content-page.intro"),
@@ -51,11 +50,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		allPages.forEach((el) => el.classList.remove("hidden"));
 
-		left.scrollTo({ top: 0, behavior: "smooth" });
+		const pageH = left.clientHeight;
+		left.scrollTo({ top: pageH, behavior: "smooth" });
 		right.scrollTo({ top: 0, behavior: "smooth" });
 
 		setTimeout(() => {
 			INTRO_PAGES.forEach((el) => el.remove());
+			left.style.scrollBehavior = "auto";
+			left.scrollTop = 0;
+			left.style.scrollBehavior = "";
 			unlockScroll();
 		}, 700);
 	}
@@ -76,19 +79,15 @@ document.addEventListener("DOMContentLoaded", () => {
 	requestAnimationFrame(() =>
 		requestAnimationFrame(() => {
 			const pageH = left.clientHeight;
-
-			left.scrollTop = (leftPages.length - 1) * pageH;
+			left.scrollTop = pageH;
 			right.scrollTop = 0;
 
 			left.style.scrollBehavior = "";
 			right.style.scrollBehavior = "";
 
 			setTimeout(() => {
-				left.scrollTo({ top: TARGET_PAGE * pageH, behavior: "smooth" });
-				right.scrollTo({
-					top: TARGET_PAGE * pageH,
-					behavior: "smooth",
-				});
+				left.scrollTo({ top: 0, behavior: "smooth" }); // up to intro
+				right.scrollTo({ top: pageH, behavior: "smooth" }); // down to intro
 
 				setTimeout(() => {
 					document.addEventListener("click", dismiss);
