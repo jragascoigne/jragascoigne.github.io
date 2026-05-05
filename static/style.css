@@ -143,6 +143,12 @@ a {
 	font-family: monospace;
 }
 
+.content-text.list {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
 .intro {
 	font-size: 200px;
 }
