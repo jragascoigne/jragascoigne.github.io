@@ -4,6 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	if (!left || !right) return;
 
+	setTimeout(() => {
+		const hider = document.querySelector(".hider");
+		hider.remove();
+	}, 100);
+
 	const leftPages = left.querySelectorAll(".content-page");
 	const rightPages = right.querySelectorAll(".content-page");
 	if (!leftPages.length || !rightPages.length) return;

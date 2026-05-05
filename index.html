@@ -17,6 +17,7 @@
 		/>
 	</head>
 	<body>
+		<div class="hider" style="z-index: 1000"></div>
 		<!-- <div class="sidebar">
 			<div class="sidebar-section">
 				<ul class="sidebar-section-list">
@@ -80,28 +81,168 @@
 					<div class="content-page" data-label="p/s">
 						<div class="block">
 							<div class="content-title">Projects</div>
-							<div class="display-container">
-								<div class="display-item">
-									<div class="display-title">
+
+							<div class="grid-wrap">
+								<div class="projects-grid" id="grid">
+									<div
+										class="proj-card"
+										onclick="expand(this)"
+										data-title="Dice"
+										data-desc="A handmade VN engine built in C++ with SDL2, designed for creating interactive stories. Now working on a custom scripting language, lexer and parser."
+										data-chips="CPP,SDL2,Compiler"
+									>
+										<div class="proj-title">
+											<div class="proj-image">
+												<img
+													src="./static/img/project/dice.png"
+												/>
+											</div>
+											<span class="title-label"
+												>Dice</span
+											>
+										</div>
+									</div>
+
+									<div
+										class="proj-card"
+										onclick="expand(this)"
+										data-title="Pomodachi"
+										data-desc="A pomodoro friend to help you stay focused. Made with React and TypeScript. The name comes from Pomodoro and Tomodachi (Japanese for friend)."
+										data-chips="TypeScript,React,Web Development"
+									>
+										<div class="proj-title">
+											<div class="proj-image">
+												<img
+													src="./static/img/project/dice.png"
+												/>
+											</div>
+											<span class="title-label"
+												>Pomodachi</span
+											>
+										</div>
+									</div>
+
+									<div
+										class="proj-card"
+										onclick="expand(this)"
+										data-title="LeetCode Solutions"
+										data-desc="A collection of my LeetCode solutions implemented in Python, covering various data structures and algorithms."
+										data-chips="Python,Data Structures,Algorithms"
+									>
+										<div class="proj-title">
+											<div class="proj-image">
+												<img
+													src="./static/img/project/dice.png"
+												/>
+											</div>
+											<span class="title-label"
+												>LeetCode Solutions</span
+											>
+										</div>
+									</div>
+
+									<div
+										class="proj-card"
+										onclick="expand(this)"
+										data-title="Portfolio Site"
+										data-desc="A personal portfolio website showcasing projects, skills, and contact information. Designed with a clean, minimal aesthetic."
+										data-chips="HTML,CSS,JavaScript"
+									>
+										<div class="proj-title">
+											<div class="proj-image">
+												<img
+													src="./static/img/project/dice.png"
+												/>
+											</div>
+											<span class="title-label"
+												>Portfolio Site</span
+											>
+										</div>
+									</div>
+
+									<div class="proj-card coming-soon">
+										<div class="proj-title">
+											<span class="title-label"
+												>Coming soon!</span
+											>
+										</div>
+									</div>
+
+									<div class="proj-card coming-soon">
+										<div class="proj-title">
+											<span class="title-label"
+												>Coming soon!</span
+											>
+										</div>
+									</div>
+
+									<div class="overlay" id="overlay">
+										<div class="overlay-contents">
+											<div class="proj-title large">
+												<button
+													class="back-btn"
+													onclick="collapse()"
+												>
+													←
+												</button>
+												<span
+													class="title-label"
+													id="ov-title"
+												>
+												</span>
+												<div
+													class="chips"
+													id="ov-chips"
+												></div>
+											</div>
+
+											<div
+												class="proj-image overlay-image large"
+											>
+												<img
+													id="ov-img"
+													src=""
+													alt=""
+												/>
+											</div>
+
+											<div
+												class="overlay-desc"
+												id="ov-desc"
+											></div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- <div class="snake-container">
+								<div class="snake-item">
+									<div class="proj-title">
 										Dice
-										<div class="chip">C++</div>
-										<div class="chip">SDL2</div>
-										<div class="chip">Compiler</div>
+										<div class="snake-chips">
+											<div class="chip">CPP</div>
+											<div class="chip">SDL2</div>
+											<div class="chip">Compiler</div>
+										</div>
 									</div>
 									<div class="display-description">
-										A handmade VN engine built in C++ with
+										A handmade VN engine built in CPP with
 										SDL2, designed for creating interactive
 										stories. Now working on a custom
 										scripting language, lexer and parser.
 									</div>
 								</div>
 
-								<div class="display-item">
-									<div class="display-title">
+								<div class="snake-item">
+									<div class="proj-title">
 										Pomodachi
-										<div class="chip">TypeScript</div>
-										<div class="chip">React</div>
-										<div class="chip">Web Development</div>
+										<div class="snake-chips">
+											<div class="chip">TypeScript</div>
+											<div class="chip">React</div>
+											<div class="chip">
+												Web Development
+											</div>
+										</div>
 									</div>
 									<div class="display-description">
 										A pomodoro friend to help you stay
@@ -111,12 +252,16 @@
 									</div>
 								</div>
 
-								<div class="display-item">
-									<div class="display-title">
+								<div class="snake-item">
+									<div class="proj-title">
 										LeetCode Solutions
-										<div class="chip">Python</div>
-										<div class="chip">Data Structures</div>
-										<div class="chip">Algorithms</div>
+										<div class="snake-chips">
+											<div class="chip">Python</div>
+											<div class="chip">
+												Data Structures
+											</div>
+											<div class="chip">Algorithms</div>
+										</div>
 									</div>
 									<div
 										class="display-description"
@@ -127,8 +272,66 @@
 										data structures and algorithms.
 									</div>
 								</div>
-							</div>
+
+								<div class="snake-item">
+									<div class="proj-title">
+										Dice
+										<div class="snake-chips">
+											<div class="chip">CPP</div>
+											<div class="chip">SDL2</div>
+											<div class="chip">Compiler</div>
+										</div>
+									</div>
+									<div class="display-description">
+										A handmade VN engine built in CPP with
+										SDL2, designed for creating interactive
+										stories. Now working on a custom
+										scripting language, lexer and parser.
+									</div>
+								</div>
+
+								<div class="snake-item">
+									<div class="proj-title">
+										Pomodachi
+										<div class="snake-chips">
+											<div class="chip">TypeScript</div>
+											<div class="chip">React</div>
+											<div class="chip">
+												Web Development
+											</div>
+										</div>
+									</div>
+									<div class="display-description">
+										A pomodoro friend to help you stay
+										focused. Made with React and TypeScript.
+										The name comes from Pomodoro and
+										Tomodachi (Japanese for friend).
+									</div>
+								</div>
+
+								<div class="snake-item">
+									<div class="proj-title">
+										LeetCode Solutions
+										<div class="snake-chips">
+											<div class="chip">Python</div>
+											<div class="chip">
+												Data Structures
+											</div>
+											<div class="chip">Algorithms</div>
+										</div>
+									</div>
+									<div
+										class="display-description"
+										id="leetcode"
+									>
+										A collection of my LeetCode solutions
+										implemented in Python, covering various
+										data structures and algorithms.
+									</div>
+								</div>
+							</div> -->
 						</div>
+
 						<div class="block">
 							<div class="content-title">Skills</div>
 							<div class="content-text">
@@ -136,7 +339,7 @@
 									<li>
 										<span class="accent"
 											>Software Development</span
-										>: Python, JavaScript, C#, C++
+										>: Python, JavaScript, C#, CPP
 									</li>
 									<li>
 										<span class="accent"
@@ -260,6 +463,7 @@
 
 		<script type="module" src="/static/ascii-bg.js"></script>
 		<script src="/static/script/scroll-snap.js"></script>
+		<script src="/static/script/proj-card.js"></script>
 		<script src="/static/script/load-animation.js"></script>
 
 		<script src="/static/script/hover-popup.js"></script>

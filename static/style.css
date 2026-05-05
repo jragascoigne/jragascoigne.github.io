@@ -84,7 +84,7 @@ a {
 
 .content-page {
 	font-family: "Inter", Arial, Helvetica, sans-serif;
-	width: 80%;
+	width: 90%;
 	height: 100vh;
 	min-height: 100vh;
 	flex-shrink: 0;
@@ -95,6 +95,19 @@ a {
 	align-items: left;
 	justify-content: center;
 	overflow: hidden;
+}
+
+.hider {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	background-color: var(--bg-color);
+
+	opacity: 1;
+	z-index: 1000;
 }
 
 .content-page.intro {
@@ -308,13 +321,51 @@ a {
 }
 
 .chip {
-	background-color: var(--outline-color);
-	padding: 4px 8px;
-	border-radius: 16px;
-	font-size: 12px;
 	font-family: monospace;
 	align-items: center;
 	align-self: center;
+
+	font-size: 12px;
+	padding: 4px 10px;
+	border-radius: 999px;
+	background: var(--bg-color);
+	border: 1px solid var(--outline-color);
+
+	position: relative;
+	padding-left: 24px;
+}
+
+.chip::before {
+	content: "";
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	width: 12px;
+	height: 12px;
+	border-radius: 999px;
+	background-color: var(--outline-color);
+}
+
+.chip.typescript::before {
+	background-color: rgb(90, 105, 219);
+}
+.chip.cpp::before {
+	background-color: rgb(90, 105, 219);
+}
+.chip.python::before {
+	background-color: rgb(219, 202, 90);
+}
+.chip.html::before {
+	background-color: rgb(219, 114, 90);
+}
+.chip.css::before {
+	background-color: rgb(90, 105, 219);
+}
+.chip.react::before {
+	background-color: rgb(90, 105, 219);
+}
+.chip.javascript::before {
+	background-color: rgb(219, 202, 90);
 }
 
 .display-title {
@@ -323,4 +374,188 @@ a {
 	flex-direction: row;
 	font-size: 24px;
 	margin-bottom: 8px;
+}
+
+/* NEW STUFFF */
+.projects-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+	position: relative;
+	padding: 20px 0;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	background: var(--bg-color);
+	z-index: 10;
+	display: none;
+	animation: fadeIn 0.2s linear;
+}
+
+.overlay.visible {
+	display: block;
+}
+
+.overlay-contents {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 20px;
+}
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.back-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 16px;
+	cursor: pointer;
+	background: none;
+	border: none;
+	width: fit-content;
+
+	padding: 8px;
+}
+
+.chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	padding: 8px;
+}
+
+.proj-card {
+	border: 1px solid var(--outline-color);
+	cursor: pointer;
+
+	border-radius: 4px;
+	overflow: hidden;
+
+	opacity: 0;
+	min-height: 180px;
+
+	transition: background-color 0.1s linear;
+}
+
+.proj-card.coming-soon {
+	pointer-events: none;
+}
+
+.proj-card:hover {
+	background-color: color-mix(
+		in srgb,
+		var(--outline-color) 40%,
+		var(--bg-color) 100%
+	);
+}
+
+.in-view .proj-card:nth-child(1) {
+	animation: fadeIn 0.5s forwards;
+	animation-delay: 0.05s;
+}
+.in-view .proj-card:nth-child(2) {
+	animation: fadeIn 0.5s forwards;
+	animation-delay: 0.1s;
+}
+.in-view .proj-card:nth-child(3) {
+	animation: fadeIn 0.5s forwards;
+	animation-delay: 0.15s;
+}
+.in-view .proj-card:nth-child(4) {
+	animation: fadeIn 0.5s forwards;
+	animation-delay: 0.3s;
+}
+.in-view .proj-card:nth-child(5) {
+	animation: fadeIn 0.5s forwards;
+	animation-delay: 0.25s;
+}
+.in-view .proj-card:nth-child(6) {
+	animation: fadeIn 0.5s forwards;
+	animation-delay: 0.2s;
+}
+.in-view .proj-card:nth-child(7) {
+	animation: fadeIn 0.5s forwards;
+	animation-delay: 0.35s;
+}
+.in-view .proj-card:nth-child(8) {
+	animation: fadeIn 0.5s forwards;
+	animation-delay: 0.4s;
+}
+.in-view .proj-card:nth-child(9) {
+	animation: fadeIn 0.5s forwards;
+	animation-delay: 0.45s;
+}
+
+.proj-image {
+	border-bottom: 1px solid var(--outline-color);
+	height: 140px;
+	opacity: 0.75;
+
+	transition: opacity 0.1s linear;
+}
+
+.proj-image.large {
+	padding-bottom: 12px;
+	height: 240px;
+}
+
+.proj-card:hover .proj-image {
+	opacity: 1;
+}
+
+.proj-image img {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.proj-title {
+	display: flex;
+	flex-direction: column;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.proj-card.coming-soon .proj-title {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 50%;
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.proj-title.large {
+	font-size: 24px;
+}
+
+.title-label {
+	padding: 8px;
+}
+
+.proj-title.large .title-label {
+	border-bottom: 1px solid var(--outline-color);
 }
