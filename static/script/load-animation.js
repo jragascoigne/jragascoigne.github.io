@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
+	document.body.style.visibility = "visible";
 	const left = document.getElementById("left");
 	const right = document.getElementById("right");
 
@@ -76,6 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		document.removeEventListener("keydown", dismiss);
 		document.removeEventListener("wheel", dismiss);
 		document.removeEventListener("touchstart", dismiss);
+		document.getElementsByClassName("header")[0].style.visibility =
+			"visible";
+
 		clearTimeout(autoTimer);
 	}
 
