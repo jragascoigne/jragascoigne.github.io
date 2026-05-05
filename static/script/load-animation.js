@@ -1,5 +1,4 @@
 window.addEventListener("load", () => {
-	document.body.style.visibility = "visible";
 	const left = document.getElementById("left");
 	const right = document.getElementById("right");
 
@@ -98,6 +97,8 @@ window.addEventListener("load", () => {
 			right.style.scrollBehavior = "";
 
 			setTimeout(() => {
+				document.body.style.visibility = "visible"; // toggle page visibility to prevent flicker
+
 				left.scrollTo({ top: 0, behavior: "smooth" }); // up to intro
 				right.scrollTo({ top: pageH, behavior: "smooth" }); // down to intro
 
