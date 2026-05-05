@@ -1,4 +1,4 @@
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
 	const left = document.getElementById("left");
 	const right = document.getElementById("right");
 
@@ -25,6 +25,12 @@ window.addEventListener("load", () => {
 	];
 	allPages.forEach((el) => el.classList.add("hidden"));
 
+	// hide the image immediately to prevent flicker
+	const profileImg = document.querySelector(
+		'.content-page[data-label="me"] img',
+	);
+	if (profileImg) profileImg.style.visibility = "hidden";
+
 	function absorbScroll(e) {
 		e.preventDefault();
 		e.stopPropagation();
@@ -47,6 +53,8 @@ window.addEventListener("load", () => {
 	function dismiss() {
 		if (dismissed) return;
 		dismissed = true;
+
+		if (profileImg) profileImg.style.visibility = "visible";
 
 		cleanup();
 		lockScroll();
@@ -78,7 +86,6 @@ window.addEventListener("load", () => {
 		document.removeEventListener("touchstart", dismiss);
 		document.getElementsByClassName("header")[0].style.visibility =
 			"visible";
-
 		clearTimeout(autoTimer);
 	}
 
@@ -97,10 +104,12 @@ window.addEventListener("load", () => {
 			right.style.scrollBehavior = "";
 
 			setTimeout(() => {
-				document.body.style.visibility = "visible"; // toggle page visibility to prevent flicker
+				// reveal image just before animation starts
+				document.getElementsByClassName("header")[0].style.visibility =
+					"visible";
 
-				left.scrollTo({ top: 0, behavior: "smooth" }); // up to intro
-				right.scrollTo({ top: pageH, behavior: "smooth" }); // down to intro
+				left.scrollTo({ top: 0, behavior: "smooth" });
+				right.scrollTo({ top: pageH, behavior: "smooth" });
 
 				setTimeout(() => {
 					document.addEventListener("click", dismiss);
