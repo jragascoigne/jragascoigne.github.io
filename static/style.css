@@ -287,3 +287,34 @@ a {
 	z-index: 1;
 	position: relative;
 }
+
+.display-container {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 16px;
+	overflow: auto;
+}
+
+.display-item {
+	border: 1px solid var(--outline-color);
+	padding: 8px;
+}
+
+.chip {
+	background-color: var(--outline-color);
+	padding: 4px 8px;
+	border-radius: 16px;
+	font-size: 12px;
+	font-family: monospace;
+	align-items: center;
+	align-self: center;
+}
+
+.display-title {
+	gap: 8px;
+	display: flex;
+	flex-direction: row;
+	font-size: 24px;
+	margin-bottom: 8px;
+}
