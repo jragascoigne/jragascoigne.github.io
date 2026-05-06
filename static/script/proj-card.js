@@ -2,7 +2,13 @@ function expand(card) {
 	const overlay = document.getElementById("overlay");
 	const grid = document.getElementById("grid");
 
-	document.getElementById("ov-title").textContent = card.dataset.title;
+	const ovTitle = document.getElementById("ov-title");
+	ovTitle.innerHTML = `
+        <button class="back-btn" onclick="collapse()">
+                ←
+        </button>
+		${card.dataset.title}
+	`;
 	document.getElementById("ov-desc").textContent = card.dataset.desc;
 
 	const img = card.querySelector(".proj-image img");

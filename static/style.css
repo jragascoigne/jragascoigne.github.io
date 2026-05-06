@@ -552,10 +552,17 @@ a {
 	font-size: 24px;
 }
 
-.title-label {
+.ov-title-label {
 	padding: 8px;
 }
 
-.proj-title.large .title-label {
+.proj-title.large .ov-title-label {
 	border-bottom: 1px solid var(--outline-color);
+}
+
+#ov-title {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 8px;
 }
