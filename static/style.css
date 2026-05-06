@@ -14,7 +14,7 @@
 	--outline-color: #585858;
 	--text-color: #101010;
 	--text-color-dim: #454545;
-	--style-color: rgb(154, 151, 239);
+	--style-color: #9a97ef;
 }
 
 html,
@@ -565,4 +565,8 @@ a {
 	flex-direction: row;
 	align-items: center;
 	gap: 8px;
+}
+
+.title-label {
+	padding: 8px;
 }
