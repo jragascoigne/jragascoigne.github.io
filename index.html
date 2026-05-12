@@ -89,6 +89,7 @@
 										onclick="expand(this)"
 										data-title="Dice"
 										data-desc="A handmade VN engine built in C++ with SDL2, designed for creating interactive stories. Now working on a custom scripting language, lexer and parser."
+										data-link="https://github.com/jragascoigne/dice"
 										data-chips="CPP,SDL2,Compiler"
 									>
 										<div class="proj-title">
@@ -108,6 +109,7 @@
 										onclick="expand(this)"
 										data-title="Pomodachi"
 										data-desc="A pomodoro friend to help you stay focused. Made with React and TypeScript. The name comes from Pomodoro and Tomodachi (Japanese for friend)."
+										data-link="https://github.com/jragascoigne/pomo"
 										data-chips="TypeScript,React,Web Development"
 									>
 										<div class="proj-title">
@@ -127,6 +129,7 @@
 										onclick="expand(this)"
 										data-title="LeetCode Solutions"
 										data-desc="My LeetCode solutions implemented in Python, covering various data structures and algorithms."
+										data-link="https://github.com/jragascoigne/leetcode"
 										data-chips="Python,Data Structures,Algorithms"
 									>
 										<div class="proj-title">
@@ -146,6 +149,7 @@
 										onclick="expand(this)"
 										data-title="Portfolio Site"
 										data-desc="My personal portfolio website showcasing a bit about me, projects, skills, and contact information."
+										data-link="https://github.com/jragascoigne/jragascoigne.github.io"
 										data-chips="HTML,CSS,JavaScript"
 									>
 										<div class="proj-title">
@@ -165,6 +169,7 @@
 										onclick="expand(this)"
 										data-title="Anchor"
 										data-desc="A CLI tool that detects API schema drift. A small proof of concept made with Python."
+										data-link="https://github.com/jragascoigne/anchor"
 										data-chips="Python,CLI,API,Parser"
 									>
 										<div class="proj-title">
@@ -179,10 +184,24 @@
 										</div>
 									</div>
 
-									<div class="proj-card coming-soon">
+									<div
+										class="proj-card"
+										onclick="expand(this)"
+										data-title="Kibi"
+										data-desc="
+										An AI powered context-based file storage app. Made in two days in a team for a University hackathon!
+										"
+										data-link="https://github.com/dwyaneramos/saasathon"
+										data-chips="TypeScript,React,Express,PostgreSQL,AI Integration"
+									>
 										<div class="proj-title">
+											<div class="proj-image">
+												<img
+													src="./static/img/project/kibi.png"
+												/>
+											</div>
 											<span class="title-label"
-												>Coming soon!</span
+												>Kibi</span
 											>
 										</div>
 									</div>
@@ -190,15 +209,8 @@
 									<div class="overlay" id="overlay">
 										<div class="overlay-contents">
 											<div class="proj-title large">
-												<span
-													class="ov-title-label"
-													id="ov-title"
-												>
-												</span>
-												<div
-													class="chips"
-													id="ov-chips"
-												></div>
+												<span class="ov-title-label" id="ov-title"></span>
+												<div class="chips" id="ov-chips"></div>
 											</div>
 
 											<div
@@ -215,126 +227,11 @@
 												class="overlay-desc"
 												id="ov-desc"
 											></div>
+											
 										</div>
 									</div>
 								</div>
 							</div>
-
-							<!-- <div class="snake-container">
-								<div class="snake-item">
-									<div class="proj-title">
-										Dice
-										<div class="snake-chips">
-											<div class="chip">CPP</div>
-											<div class="chip">SDL2</div>
-											<div class="chip">Compiler</div>
-										</div>
-									</div>
-									<div class="display-description">
-										A handmade VN engine built in CPP with
-										SDL2, designed for creating interactive
-										stories. Now working on a custom
-										scripting language, lexer and parser.
-									</div>
-								</div>
-
-								<div class="snake-item">
-									<div class="proj-title">
-										Pomodachi
-										<div class="snake-chips">
-											<div class="chip">TypeScript</div>
-											<div class="chip">React</div>
-											<div class="chip">
-												Web Development
-											</div>
-										</div>
-									</div>
-									<div class="display-description">
-										A pomodoro friend to help you stay
-										focused. Made with React and TypeScript.
-										The name comes from Pomodoro and
-										Tomodachi (Japanese for friend).
-									</div>
-								</div>
-
-								<div class="snake-item">
-									<div class="proj-title">
-										LeetCode Solutions
-										<div class="snake-chips">
-											<div class="chip">Python</div>
-											<div class="chip">
-												Data Structures
-											</div>
-											<div class="chip">Algorithms</div>
-										</div>
-									</div>
-									<div
-										class="display-description"
-										id="leetcode"
-									>
-										A collection of my LeetCode solutions
-										implemented in Python, covering various
-										data structures and algorithms.
-									</div>
-								</div>
-
-								<div class="snake-item">
-									<div class="proj-title">
-										Dice
-										<div class="snake-chips">
-											<div class="chip">CPP</div>
-											<div class="chip">SDL2</div>
-											<div class="chip">Compiler</div>
-										</div>
-									</div>
-									<div class="display-description">
-										A handmade VN engine built in CPP with
-										SDL2, designed for creating interactive
-										stories. Now working on a custom
-										scripting language, lexer and parser.
-									</div>
-								</div>
-
-								<div class="snake-item">
-									<div class="proj-title">
-										Pomodachi
-										<div class="snake-chips">
-											<div class="chip">TypeScript</div>
-											<div class="chip">React</div>
-											<div class="chip">
-												Web Development
-											</div>
-										</div>
-									</div>
-									<div class="display-description">
-										A pomodoro friend to help you stay
-										focused. Made with React and TypeScript.
-										The name comes from Pomodoro and
-										Tomodachi (Japanese for friend).
-									</div>
-								</div>
-
-								<div class="snake-item">
-									<div class="proj-title">
-										LeetCode Solutions
-										<div class="snake-chips">
-											<div class="chip">Python</div>
-											<div class="chip">
-												Data Structures
-											</div>
-											<div class="chip">Algorithms</div>
-										</div>
-									</div>
-									<div
-										class="display-description"
-										id="leetcode"
-									>
-										A collection of my LeetCode solutions
-										implemented in Python, covering various
-										data structures and algorithms.
-									</div>
-								</div>
-							</div> -->
 						</div>
 
 						<div class="block">

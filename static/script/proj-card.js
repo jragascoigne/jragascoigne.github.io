@@ -4,10 +4,13 @@ function expand(card) {
 
 	const ovTitle = document.getElementById("ov-title");
 	ovTitle.innerHTML = `
-        <button class="back-btn" onclick="collapse()">
-                ←
-        </button>
-		${card.dataset.title}
+	<div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+		<div>
+			<button class="back-btn" onclick="collapse()">←</button>
+			${card.dataset.title}
+		</div>
+		<a class="accent" style="margin-left: auto;" target="_blank" href="${card.dataset.link}">↗ link</a>
+	</div>
 	`;
 	document.getElementById("ov-desc").textContent = card.dataset.desc;
 

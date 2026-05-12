@@ -570,3 +570,8 @@ a {
 .title-label {
 	padding: 8px;
 }
+
+#ov-title {
+    display: flex;
+    justify-content: space-between;
+}
