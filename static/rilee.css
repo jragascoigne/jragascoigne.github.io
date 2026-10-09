@@ -60,10 +60,6 @@ h1 {
 .hero-playlist {
 	height: 40vh;
 }
-.hero-playlist h2 {
-	margin-bottom: 0.75rem;
-	font-size: clamp(1.5rem, 3vw, 2.2rem);
-}
 .memories {
 	background: var(--panel-color);
 }
@@ -72,7 +68,6 @@ h1 {
 	padding-bottom: clamp(2rem, 5vw, 4rem);
 }
 .memories {
-	font-size: clamp(2.4rem, 6vw, 4.5rem);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -209,26 +204,5 @@ iframe {
 	}
 	.poem-grid {
 		grid-template-columns: 1fr;
-	}
-}
-@media (prefers-reduced-motion: no-preference) {
-	.hero > * {
-		animation: arrive 0.7s both;
-	}
-	.hero > :nth-child(2) {
-		animation-delay: 0.1s;
-	}
-	.hero > :nth-child(3) {
-		animation-delay: 0.2s;
-	}
-	@keyframes arrive {
-		from {
-			opacity: 0;
-			transform: translateY(16px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
 	}
 }
