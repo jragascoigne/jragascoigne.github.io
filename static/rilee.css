@@ -1,0 +1,234 @@
+@font-face {
+	font-family: "Bricolage Grotesque";
+	src: url("/static/BricolageGrotesque-Variable.ttf") format("truetype");
+	font-weight: 200 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+:root {
+	--font-display: "Bricolage Grotesque", Arial, Helvetica, sans-serif;
+	--font-console: "Space Mono", monospace;
+	--bg-color: #1c1c1c;
+	--panel-color: #101010;
+	--text-color: #c5c5c5;
+	--text-color-dim: #919191;
+	--style-color: #9a97ef;
+}
+
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	background: var(--bg-color);
+	color: var(--text-color);
+	font-family: var(--font-console);
+}
+::selection {
+	background: var(--style-color);
+	color: white;
+}
+
+.hero,
+.memories,
+.poems {
+	padding: clamp(2rem, 5vw, 4rem);
+}
+.hero {
+	display: grid;
+	place-content: center;
+	text-align: center;
+}
+h1,
+h2 {
+	margin: 0;
+	font-family: var(--font-display);
+	font-weight: 800;
+	letter-spacing: -0.03em;
+	line-height: 0.98;
+}
+h1 {
+	font-size: clamp(3.5rem, 10vw, 7rem);
+}
+.intro {
+	max-width: 35rem;
+	margin: 1rem auto 1.5rem;
+	font-size: clamp(0.85rem, 1.7vw, 1rem);
+	line-height: 1.65;
+}
+.hero-playlist {
+	height: 40vh;
+}
+.hero-playlist h2 {
+	margin-bottom: 0.75rem;
+	font-size: clamp(1.5rem, 3vw, 2.2rem);
+}
+.memories {
+	background: var(--panel-color);
+}
+.memories-heading {
+	max-width: 43rem;
+	padding-bottom: clamp(2rem, 5vw, 4rem);
+}
+.memories {
+	font-size: clamp(2.4rem, 6vw, 4.5rem);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.memories h2 {
+	font-size: clamp(2.4rem, 6vw, 4.5rem);
+}
+.memory-grid {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	gap: clamp(1rem, 2vw, 2rem);
+	max-width: 1100px;
+	margin: auto;
+}
+.memory-card {
+	grid-column: span 4;
+	margin: 0;
+}
+.memory-card:nth-child(2),
+.memory-card:nth-child(5) {
+	grid-column: span 5;
+}
+.memory-card:nth-child(3),
+.memory-card:nth-child(6) {
+	grid-column: span 3;
+}
+.memory-card img {
+	display: block;
+	width: 100%;
+	height: clamp(12rem, 24vw, 20rem);
+	object-fit: cover;
+}
+.moment {
+	margin: 0.9rem 0 0.45rem;
+	font: 800 1.65rem var(--font-display);
+	letter-spacing: -0.04em;
+}
+.caption {
+	margin: 0;
+	color: var(--text-color-dim);
+	font-size: 0.72rem;
+	line-height: 1.65;
+}
+.poems-content {
+	max-width: 860px;
+	margin: auto;
+}
+.poems h2 {
+	font-size: clamp(2.4rem, 6vw, 4.5rem);
+}
+.poem-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: clamp(2rem, 6vw, 5rem);
+	margin-top: clamp(2rem, 5vw, 4rem);
+}
+.poem {
+	border-top: 1px solid var(--text-color-dim);
+	padding-top: 1rem;
+}
+.poem h3 {
+	margin: 0 0 1rem;
+	color: var(--style-color);
+	font: 800 1.2rem var(--font-display);
+}
+.poem-text {
+	margin: 0;
+	white-space: pre-line;
+	line-height: 1.8;
+}
+.observations {
+	padding: clamp(2rem, 5vw, 4rem);
+}
+.observations-content {
+	max-width: 860px;
+	margin: auto;
+}
+.observations h2 {
+	font-size: clamp(2.4rem, 6vw, 4.5rem);
+}
+.observations-list {
+	margin: clamp(1.5rem, 4vw, 3rem) 0 0;
+	padding-left: 1.3rem;
+	line-height: 2;
+}
+.scratchpad {
+	display: grid;
+	place-items: center;
+	padding: clamp(2rem, 5vw, 4rem);
+	background: var(--panel-color);
+}
+#scratchpad {
+	display: block;
+	width: min(100%, 800px);
+	height: auto;
+	border: 1px solid var(--text-color-dim);
+}
+
+iframe {
+	width: min(90vw, 560px);
+	border: 0;
+	border-radius: 12px;
+	box-shadow: 0 16px 55px #0008;
+}
+
+.poems-heading {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+@media (max-width: 650px) {
+	.hero,
+	.memories,
+	.poems {
+		padding: 1.5rem;
+	}
+	.observations,
+	.scratchpad {
+		padding: 1.5rem;
+	}
+	.memory-card,
+	.memory-card:nth-child(n) {
+		grid-column: span 6;
+	}
+	.memory-card:nth-child(3n) {
+		grid-column: span 12;
+	}
+	.memory-card img {
+		height: 12rem;
+	}
+	.poem-grid {
+		grid-template-columns: 1fr;
+	}
+}
+@media (prefers-reduced-motion: no-preference) {
+	.hero > * {
+		animation: arrive 0.7s both;
+	}
+	.hero > :nth-child(2) {
+		animation-delay: 0.1s;
+	}
+	.hero > :nth-child(3) {
+		animation-delay: 0.2s;
+	}
+	@keyframes arrive {
+		from {
+			opacity: 0;
+			transform: translateY(16px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+}
