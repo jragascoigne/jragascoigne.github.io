@@ -10,6 +10,8 @@
 	--font-display: "Bricolage Grotesque", Arial, Helvetica, sans-serif;
 	--font-console: "Space Mono", monospace;
 	--bg-color: #1c1c1c;
+	--bg-color-lighter: #2b2b2b;
+
 	--panel-color: #101010;
 	--text-color: #c5c5c5;
 	--text-color-dim: #919191;
@@ -205,4 +207,51 @@ iframe {
 	.poem-grid {
 		grid-template-columns: 1fr;
 	}
+}
+
+.genshin-container .container-title {
+	font-size: 24px;
+}
+
+.primos-submit-container {
+	display: flex;
+	width: 80vw;
+	flex-direction: row;
+	align-items: center;
+	gap: 8px;
+	margin: 16px;
+	padding: 16px 32px;
+	border-radius: 6px;
+	background-color: var(--bg-color-lighter);
+	color: var(--text-color);
+}
+
+.primos-input {
+	flex-grow: 1;
+	width: 100%;
+	color: inherit;
+	font-weight: 900;
+	letter-spacing: -1px;
+	font-size: 46px;
+	background-color: inherit;
+	border-style: none;
+	outline: none;
+}
+
+.primos-submit {
+	flex: 1;
+	color: inherit;
+	background-color: var(--bg-color-lighter);
+	border-style: none;
+	cursor: pointer;
+	font-size: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.primos-submit svg {
+	width: 1.8em;
+	height: 1.8em;
 }
