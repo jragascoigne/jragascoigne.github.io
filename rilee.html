@@ -18,12 +18,19 @@
 	</head>
 	<body>
 		<main id="app-root"></main>
+
 		<template id="genshin-layout">
+			<div class="links">
+				<a class="rilee-link" href="/rilee">back</a>
+			</div>
 			<div class="genshin-container">
-				<div class="container-title">pt</div>
+				<div class="container-title">track Δprimos</div>
 
 				<div class="primos-submit-container">
-					<input class="primos-input" />
+					<input
+						placeholder="input total primos"
+						class="primos-input"
+					/>
 
 					<div class="primos-submit">
 						<svg
@@ -39,12 +46,63 @@
 						</svg>
 					</div>
 				</div>
+				.
+				<div class="controls-container">
+					<div class="clear-section">
+						<button class="clear-last" type="button">
+							Clear last
+						</button>
+						<button class="clear-all" type="button">
+							Clear all
+						</button>
+					</div>
+					<div class="button-container">
+						<button
+							class="zoom-out"
+							type="button"
+							aria-label="Zoom out"
+						>
+							<svg
+								viewBox="0 0 16 16"
+								fill="currentColor"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path d="M1 10L1 6L15 6V10L1 10Z"></path>
+							</svg>
+						</button>
+						<button
+							class="zoom-in"
+							type="button"
+							aria-label="Zoom in"
+						>
+							<svg
+								viewBox="0 0 16 16"
+								fill="currentColor"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M10 1H6V6L1 6V10H6V15H10V10H15V6L10 6V1Z"
+								></path>
+							</svg>
+						</button>
+					</div>
+				</div>
 
-				<canvas id="myChart"></canvas>
+				<div class="chart-wrap">
+					<div class="chart-canvas">
+						<canvas id="myChart"></canvas>
+					</div>
+					<div class="chart-scroll">
+						<div class="chart-spacer"></div>
+					</div>
+				</div>
 			</div>
 		</template>
 
 		<template id="rilee-layout">
+			<div class="links">
+				<a class="genshin-link" href="?view=genshin">primo tracker</a>
+			</div>
 			<section class="hero" id="top">
 				<h1>hey rilee!</h1>
 				<p class="intro">happy three months, my love...</p>
