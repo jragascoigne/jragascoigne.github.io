@@ -25,7 +25,6 @@
 			</div>
 			<div class="genshin-container">
 				<div class="container-title">track Δprimos</div>
-
 				<div class="primos-submit-container">
 					<input
 						placeholder="input total primos"
@@ -46,54 +45,70 @@
 						</svg>
 					</div>
 				</div>
-				.
-				<div class="controls-container">
-					<div class="clear-section">
-						<button class="clear-last" type="button">
-							Clear last
-						</button>
-						<button class="clear-all" type="button">
-							Clear all
-						</button>
-					</div>
-					<div class="button-container">
-						<button
-							class="zoom-out"
-							type="button"
-							aria-label="Zoom out"
-						>
-							<svg
-								viewBox="0 0 16 16"
-								fill="currentColor"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path d="M1 10L1 6L15 6V10L1 10Z"></path>
-							</svg>
-						</button>
-						<button
-							class="zoom-in"
-							type="button"
-							aria-label="Zoom in"
-						>
-							<svg
-								viewBox="0 0 16 16"
-								fill="currentColor"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M10 1H6V6L1 6V10H6V15H10V10H15V6L10 6V1Z"
-								></path>
-							</svg>
-						</button>
-					</div>
-				</div>
 
-				<div class="chart-wrap">
-					<div class="chart-canvas">
-						<canvas id="myChart"></canvas>
+				<div class="two-col">
+					<div class="left-wrapper">
+						<div class="controls-container">
+							<div class="clear-section">
+								<button class="clear-last" type="button">
+									Clear last
+								</button>
+								<button class="clear-all" type="button">
+									Clear all
+								</button>
+							</div>
+							<div class="button-container"></div>
+						</div>
+
+						<div class="chart-wrap">
+							<div class="chart-canvas">
+								<canvas id="myChart"></canvas>
+							</div>
+							<div class="chart-scroll">
+								<div class="chart-spacer"></div>
+							</div>
+						</div>
 					</div>
-					<div class="chart-scroll">
-						<div class="chart-spacer"></div>
+					<div class="right-wrapper">
+						<div class="stats-container">
+							<div class="stats-title">stats</div>
+							<div class="stats-item">
+								<div class="stats-tag">total primos:</div>
+								<label
+									id="total-primos"
+									class="stats-label"
+								></label>
+							</div>
+
+							<div class="stats-item">
+								<div class="stats-tag">average delta:</div>
+								<label
+									id="avg-delta"
+									class="stats-label"
+								></label>
+							</div>
+							<div class="stats-item">
+								<div class="stats-tag">best day:</div>
+								<label
+									id="best-day"
+									class="stats-label"
+								></label>
+							</div>
+							<div class="stats-item">
+								<div class="stats-tag">points tracked:</div>
+								<label
+									id="points-tracked"
+									class="stats-label"
+								></label>
+							</div>
+							<div class="stats-item">
+								<div class="stats-tag">tracking since:</div>
+								<label
+									id="tracking-since"
+									class="stats-label"
+								></label>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

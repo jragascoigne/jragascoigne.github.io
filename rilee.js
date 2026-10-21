@@ -1,3 +1,6 @@
+let totalPrimos = 0;
+let avgDelta = 0;
+
 document.addEventListener("DOMContentLoaded", () => {
 	const urlParams = new URLSearchParams(window.location.search);
 	const viewMode = urlParams.get("view");
@@ -9,7 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	if (templateToLoad) {
 		appRoot.appendChild(templateToLoad.content.cloneNode(true));
-		if (viewMode === "genshin") initializeGenshinFeature();
+		if (viewMode === "genshin") {
+			initializeGenshinFeature();
+		}
 	} else {
 		appRoot.textContent = "Error: Template layout could not be found.";
 	}
@@ -53,6 +58,8 @@ function formatLabel(iso) {
 function initializeGenshinFeature() {
 	const ctx = document.getElementById("myChart");
 	if (!ctx) return;
+
+	totalPrimos = localStorage.getItem("totalPrimos");
 
 	// Each entry: { t: UTC ISO timestamp, total: number, earned: number }
 	const entries = loadEntries();
@@ -116,57 +123,8 @@ function initializeGenshinFeature() {
 	const primosInput = document.querySelector(".primos-input");
 	const clearLastBtn = document.querySelector(".clear-last");
 	const clearAllBtn = document.querySelector(".clear-all");
-	const zoomInBtn = document.querySelector(".zoom-in");
-	const zoomOutBtn = document.querySelector(".zoom-out");
-	const scroller = document.querySelector(".chart-scroll");
-	const spacer = document.querySelector(".chart-spacer");
-	const chartWrap = document.querySelector(".chart-wrap");
 
-	if (
-		!submitBtn ||
-		!primosInput ||
-		!zoomInBtn ||
-		!zoomOutBtn ||
-		!scroller ||
-		!spacer
-	)
-		return;
-
-	ctx.addEventListener(
-		"wheel",
-		(e) => {
-			if (Math.abs(e.deltaX) > 0 || e.shiftKey) {
-				e.preventDefault();
-				scroller.scrollLeft += e.deltaX || e.deltaY;
-			}
-		},
-		{ passive: false },
-	);
-
-	let drag = null;
-	ctx.addEventListener("pointerdown", (e) => {
-		drag = { x: e.clientX, left: scroller.scrollLeft };
-		ctx.setPointerCapture(e.pointerId);
-	});
-	ctx.addEventListener("pointermove", (e) => {
-		if (drag) scroller.scrollLeft = drag.left - (e.clientX - drag.x);
-	});
-	ctx.addEventListener("pointerup", () => (drag = null));
-	ctx.style.touchAction = "pan-y";
-
-	let zoom = 0;
-	let zoomTarget = 0;
-	let rafId = null;
-	let lastFrame = 0;
-
-	const pxPerEntry = () => {
-		const n = Math.max(entries.length, 1);
-		const minPx = Math.min(scroller.clientWidth / n, 200);
-		const maxPx = Math.max(200, minPx);
-		return minPx * Math.pow(maxPx / minPx, zoom);
-	};
-
-	let lastPx = pxPerEntry();
+	if (!submitBtn || !primosInput) return;
 
 	let yRange = null;
 
@@ -185,88 +143,15 @@ function initializeGenshinFeature() {
 		yRange = { min: lo - pad, max: hi + pad };
 	}
 
-	function updateWindow() {
-		const n = entries.length;
-		const px = pxPerEntry();
-		const viewW = scroller.clientWidth;
-		const { x, y } = myChart.options.scales;
+	function applyView() {
+		updateClearButtons();
 
-		if (n === 0 || n * px <= viewW + 1) {
-			x.min = undefined;
-			x.max = undefined;
-		} else {
-			const start = scroller.scrollLeft / px;
-			x.min = start;
-			x.max = start + viewW / px - 1;
-		}
-
+		const { y } = myChart.options.scales;
 		y.min = yRange ? yRange.min : undefined;
 		y.max = yRange ? yRange.max : undefined;
 
 		myChart.update("none");
 	}
-
-	function applyView({ stickToEnd = false, anchor = false } = {}) {
-		updateClearButtons();
-		const px = pxPerEntry();
-		const viewW = scroller.clientWidth;
-
-		const centreIdx = (scroller.scrollLeft + viewW / 2) / lastPx;
-
-		spacer.style.width = Math.max(viewW, entries.length * px) + "px";
-
-		if (stickToEnd) {
-			scroller.scrollLeft = scroller.scrollWidth;
-		} else if (anchor) {
-			scroller.scrollLeft = centreIdx * px - viewW / 2;
-		}
-
-		lastPx = px;
-		updateWindow();
-	}
-
-	function updateZoomButtons() {
-		const atMin = zoomTarget <= 0;
-		const atMax = zoomTarget >= 1;
-
-		zoomOutBtn.disabled = atMin;
-		zoomInBtn.disabled = atMax;
-
-		chartWrap?.classList.toggle("at-min-zoom", atMin);
-		chartWrap?.classList.toggle("at-max-zoom", atMax);
-	}
-
-	function animateZoom(now) {
-		const dt = lastFrame ? Math.min(now - lastFrame, 50) : 16;
-		lastFrame = now;
-
-		zoom += (zoomTarget - zoom) * (1 - Math.exp(-dt / 80));
-		if (Math.abs(zoomTarget - zoom) < 0.002) zoom = zoomTarget;
-
-		applyView({ anchor: true });
-
-		if (zoom !== zoomTarget) {
-			rafId = requestAnimationFrame(animateZoom);
-		} else {
-			rafId = null;
-			lastFrame = 0;
-		}
-	}
-
-	function setZoomTarget(value) {
-		zoomTarget = Math.min(1, Math.max(0, value));
-		updateZoomButtons();
-		if (!rafId) rafId = requestAnimationFrame(animateZoom);
-	}
-
-	zoomInBtn.addEventListener("click", () => setZoomTarget(zoomTarget + 0.25));
-	zoomOutBtn.addEventListener("click", () =>
-		setZoomTarget(zoomTarget - 0.25),
-	);
-	updateZoomButtons();
-
-	scroller.addEventListener("scroll", updateWindow);
-	window.addEventListener("resize", () => applyView());
 
 	function updateClearButtons() {
 		const empty = entries.length === 0;
@@ -277,12 +162,8 @@ function initializeGenshinFeature() {
 	function afterRemoval() {
 		saveEntries(entries);
 		computeYRange();
-
-		if (!entries.length) {
-			zoom = zoomTarget = 0;
-			updateZoomButtons();
-		}
-		applyView({ stickToEnd: true });
+		applyView();
+		populateStats();
 	}
 
 	clearLastBtn?.addEventListener("click", () => {
@@ -310,6 +191,9 @@ function initializeGenshinFeature() {
 	function handleSubmit() {
 		const newTotal = parseInt(primosInput.value, 10);
 
+		localStorage.setItem("totalPrimos", newTotal);
+		totalPrimos = newTotal;
+
 		if (isNaN(newTotal)) {
 			alert("Please enter a valid total number of Primogems.");
 			return;
@@ -333,10 +217,12 @@ function initializeGenshinFeature() {
 		myChart.data.datasets[0].data.push(entry.earned);
 		myChart.data.datasets[1].data.push(0);
 		computeYRange();
-		applyView({ stickToEnd: true });
+		applyView();
 
 		primosInput.value = "";
 		primosInput.focus();
+
+		populateStats();
 	}
 
 	submitBtn.addEventListener("click", handleSubmit);
@@ -348,6 +234,64 @@ function initializeGenshinFeature() {
 		}
 	});
 
+	function formatDate(input) {
+		const d = new Date(input);
+		const day = d.getDate();
+		const suffix =
+			day % 10 === 1 && day !== 11
+				? "st"
+				: day % 10 === 2 && day !== 12
+					? "nd"
+					: day % 10 === 3 && day !== 13
+						? "rd"
+						: "th";
+		const month = d.toLocaleDateString("en-NZ", { month: "long" });
+		return `${day}${suffix} of ${month} ${d.getFullYear()}`;
+	}
+
+	function populateStats() {
+		const totalPrimosDiv = document.getElementById("total-primos");
+		const totalUpdatesDiv = document.getElementById("points-tracked");
+		const avgDeltaDiv = document.getElementById("avg-delta");
+		const bestDayDiv = document.getElementById("best-day");
+		const trackingSinceDiv = document.getElementById("tracking-since");
+
+		const values = myChart.data.datasets[0].data;
+
+		if (values.length == 0) {
+			totalPrimosDiv.innerText = "N/A";
+			totalUpdatesDiv.innerText = "N/A";
+			avgDeltaDiv.innerText = "N/A";
+			bestDayDiv.innerText = "N/A";
+			trackingSinceDiv.innerText = "N/A";
+
+			return;
+		}
+
+		avgDelta = values.reduce((a, b) => a + b, 0) / values.length;
+		avgDelta = Math.round(avgDelta);
+
+		let maxDelta = values[0];
+		let maxi = 0;
+		for (let i = 0; i < values.length; i++) {
+			if (values[i] > maxDelta) {
+				maxi = i;
+				maxDelta = values[i];
+			}
+		}
+
+		maxDelta = Math.abs(maxDelta);
+		const bestDateOnly = formatDate(entries[maxi].t);
+		bestDayDiv.innerText = `${maxDelta > 0 ? "+" : ""}${maxDelta} on the ${bestDateOnly}`;
+
+		totalUpdatesDiv.innerText = `${values.length} point${values.length == 1 ? "" : "s"}`;
+
+		totalPrimosDiv.innerText = totalPrimos;
+		avgDeltaDiv.innerText = avgDelta;
+		trackingSinceDiv.innerText = formatDate(entries[0].t);
+	}
+
 	computeYRange();
-	applyView({ stickToEnd: true });
+	applyView();
+	populateStats();
 }

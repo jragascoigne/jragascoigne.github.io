@@ -391,3 +391,48 @@ input::placeholder {
 	color: var(--style-color);
 	cursor: pointer;
 }
+
+.two-col {
+	display: flex;
+	flex-direction: row;
+	gap: 60px;
+	width: 100%;
+}
+
+.stats-title {
+	font-size: 24px;
+	font-weight: 800;
+	text-align: center;
+	letter-spacing: -1px;
+}
+
+.left-wrapper {
+	width: 65%;
+}
+
+.right-wrapper {
+	width: 35%;
+}
+
+.stats-item {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.stats-container {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.stats-tag {
+	font-size: 18px;
+	width: 30%;
+}
+.stats-label {
+	width: 40%;
+	font-size: 16px;
+	font-style: italic;
+	text-align: right;
+}
