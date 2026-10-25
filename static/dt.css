@@ -24,9 +24,9 @@ body {
 	background: var(--bg);
 	color: var(--ink);
 	font:
-		400 16px/1.6 "Space Mono",
-		ui-monospace,
-		monospace;
+		400 16px/1.6 Helvetica,
+		Arial,
+		sans-serif;
 }
 main {
 	max-width: 620px;
@@ -199,4 +199,28 @@ button:disabled {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+}
+
+.dropdown-container {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	min-width: 160px;
+	z-index: 1;
+}
+
+.show {
+	display: block;
+}
+
+.dropbtn {
+	width: 100%;
+	text-align: center;
+}
+.bank-length {
+	margin: 12px 0;
 }

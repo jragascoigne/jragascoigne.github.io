@@ -36,19 +36,38 @@ const esc = (s) =>
 function menu() {
 	const p = load();
 	const topics = [...new Set(bank.map((q) => q.topic))];
+
 	app.innerHTML = `
         <h1 class="title">rilee's learner test practice</h1>
         <div class="menu">
-            <button data-start="mock">Mock test<small>${Math.min(MOCK_SIZE, bank.length)} random questions${p.best !== null ? ` · best ${p.best}%` : ""}</small></button>
-            <button data-start="mistakes" ${p.wrong.length ? "" : "disabled"}>Review my mistakes<small>${p.wrong.length} to revisit</small></button>
-
-            <div class="grid">
-            ${topics.map((t) => `<button class="grid-topic" data-start="topic" data-topic="${esc(t)}">${esc(t)}<small>${bank.filter((q) => q.topic === t).length} questions</small></button>`).join("")}
-        </div>
+            <button data-start="mock">Run a test!<small>${Math.min(MOCK_SIZE, bank.length)} random questions${p.best !== null ? ` · best ${p.best}%` : ""}</small></button>
+            <button data-start="mistakes" ${p.wrong.length ? "" : "disabled"}>Review mistakes<small>${p.wrong.length} to revisit</small></button>
+        <div class="dropdown-container">
+            <button id="dropdownBtn" class="dropbtn">All Topics</button>
+                <div id="dropdownMenu" class="dropdown-content grid">
+                    <div class="bank-length">${bank.length} total questions</div>
+                        <div class="grid">
+                        ${topics.map((t) => `<button class="grid-topic" data-start="topic" data-topic="${esc(t)}">${esc(t)}<small>${bank.filter((q) => q.topic === t).length} questions</small></button>`).join("")}
+                    </div>
+                </div>
+            </div>
         </div>`;
 	app.querySelectorAll("[data-start]").forEach(
 		(b) => (b.onclick = () => start(b.dataset.start, b.dataset.topic)),
 	);
+	const dropdownBtn = document.getElementById("dropdownBtn");
+	const dropdownMenu = document.getElementById("dropdownMenu");
+
+	dropdownBtn.addEventListener("click", (event) => {
+		event.stopPropagation();
+		dropdownMenu.classList.toggle("show");
+	});
+
+	window.addEventListener("click", () => {
+		if (dropdownMenu.classList.contains("show")) {
+			dropdownMenu.classList.remove("show");
+		}
+	});
 }
 
 function start(mode, topic) {
