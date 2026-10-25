@@ -787,5 +787,104 @@
 		],
 		"answer": 0,
 		"explanation": "A yellow diamond with a walking figure warns that pedestrians may be crossing ahead. Be ready to slow or stop."
+	},
+	{
+		"id": "iq1",
+		"topic": "Intersections",
+		"image": "turns/iq1.jpg",
+		"question": "Does the driver of the blue car have to give way?",
+		"options": ["Yes", "No"],
+		"answer": 0,
+		"explanation": "The blue car is crossing a line of traffic with a car to their right."
+	},
+	{
+		"id": "iq2",
+		"topic": "Intersections",
+		"image": "turns/iq2.jpg",
+		"question": "Does the driver of the blue car have to give way?",
+		"options": ["Yes", "No"],
+		"answer": 1,
+		"explanation": "The blue car has the right of way as the red car is turning across their lane."
+	},
+	{
+		"id": "iq3",
+		"topic": "Intersections",
+		"image": "turns/iq3.jpg",
+		"question": "Does the driver of the blue car have to give way?",
+		"options": ["Yes", "No"],
+		"answer": 0,
+		"explanation": "The blue car has to let the car pass first, as they're in the lane the blue car wants to turn in to."
+	},
+	{
+		"id": "iq4",
+		"topic": "Intersections",
+		"image": "turns/iq4.jpg",
+		"question": "Does the driver of the blue car have to give way?",
+		"options": ["Yes", "No"],
+		"answer": 0,
+		"explanation": "The blue car has to let the car pass first, as they're turning across the lane of oncoming traffic."
+	},
+	{
+		"id": "iq5",
+		"topic": "Intersections",
+		"image": "turns/iq5.jpg",
+		"question": "Does the driver of the blue car have to give way?",
+		"options": ["Yes", "No"],
+		"answer": 0,
+		"explanation": "There is a car to the blue car's right, so they must give way. When signs aren't present, you must always give way to your right."
+	},
+	{
+		"id": "iq6",
+		"topic": "Intersections",
+		"image": "turns/iq6.jpg",
+		"question": "Does the driver of the blue car have to give way?",
+		"options": ["Yes", "No"],
+		"answer": 1,
+		"explanation": "The blue car is on the main road, whereas the red is coming from the terminating road (side road)."
+	},
+	{
+		"id": "iq7",
+		"topic": "Intersections",
+		"image": "turns/iq7.jpg",
+		"question": "Does the driver of the blue car have to give way?",
+		"options": ["Yes", "No"],
+		"answer": 0,
+		"explanation": "There is traffic to the blue car's right, and they are coming from the terminating road."
+	},
+	{
+		"id": "iq8",
+		"topic": "Intersections",
+		"image": "turns/iq8.jpg",
+		"question": "Does the driver of the blue car have to give way?",
+		"options": ["Yes", "No"],
+		"answer": 1,
+		"explanation": "Blue has the right of way as they are to the red car's right."
+	},
+	{
+		"id": "iq9",
+		"topic": "Intersections",
+		"image": "turns/iq9.jpg",
+		"question": "Does the driver of the blue car have to give way?",
+		"options": ["Yes", "No"],
+		"answer": 0,
+		"explanation": "Blue is on a stop sign, meaning they must let all traffic pass before continuing."
+	},
+	{
+		"id": "iq10",
+		"topic": "Intersections",
+		"image": "turns/iq10.jpg",
+		"question": "Does the driver of the blue car have to give way?",
+		"options": ["Yes", "No"],
+		"answer": 1,
+		"explanation": "Blue has the right of way. The red car must give way to all traffic going straight or turning left, as they are turning right."
+	},
+	{
+		"id": "iq11",
+		"topic": "Intersections",
+		"image": "turns/iq11.jpg",
+		"question": "Does the driver of the blue car have to give way?",
+		"options": ["Yes", "No"],
+		"answer": 1,
+		"explanation": "Blue has the right of way. The red car must give way to all traffic going straight or turning left, as they are turning right."
 	}
 ]

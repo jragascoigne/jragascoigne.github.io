@@ -38,9 +38,9 @@ function menu() {
 	const topics = [...new Set(bank.map((q) => q.topic))];
 
 	app.innerHTML = `
-        <h1 class="title">rilee's learner test practice</h1>
+        <h1 class="title">RILEE - rilee's interactive learners examination exercises</h1>
         <div class="menu">
-            <button data-start="mock">Run a test!<small>${Math.min(MOCK_SIZE, bank.length)} random questions${p.best !== null ? ` · best ${p.best}%` : ""}</small></button>
+            <button data-start="mock">Run a test!<small>${Math.min(MOCK_SIZE, bank.length)} random questions${p.best !== null ? ` - best ${p.best}%` : ""}</small></button>
             <button data-start="mistakes" ${p.wrong.length ? "" : "disabled"}>Review mistakes<small>${p.wrong.length} to revisit</small></button>
         <div class="dropdown-container">
             <button id="dropdownBtn" class="dropbtn">All Topics</button>
@@ -84,8 +84,13 @@ function start(mode, topic) {
 function question() {
 	const { qs, i } = session;
 	const q = qs[i];
-	// shuffle options but track the correct one
-	const order = shuffle(q.options.map((_, idx) => idx));
+	let order;
+	// only shuffle options for normal questions, intersection questions remain "Yes" : "No"
+	if (q.id.slice(0, 2) == "iq") {
+		order = q.options.map((_, idx) => idx);
+	} else {
+		order = shuffle(q.options.map((_, idx) => idx));
+	}
 	app.innerHTML = `
         <button class="link muted" id="quit">quit</button>
         <div class="road"><i style="width:${(i / qs.length) * 100}%"></i></div>
