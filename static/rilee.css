@@ -229,8 +229,8 @@ input::placeholder {
 	font-weight: 300;
 	font-style: italic;
 	font-size: 32px;
-	color: #808080; /* Explicitly sets the placeholder to grey */
-	opacity: 0.8; /* Ensures browser defaults don't override the opacity */
+	color: #808080;
+  opacity: 0.8;
 }
 .primos-submit-container {
 	display: flex;

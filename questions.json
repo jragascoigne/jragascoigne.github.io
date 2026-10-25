@@ -1,0 +1,791 @@
+[
+	{
+		"id": "speed-open",
+		"topic": "Speed",
+		"question": "What is the maximum speed limit for a car on an open road, unless a sign says otherwise?",
+		"options": ["80 km/h", "90 km/h", "100 km/h", "110 km/h"],
+		"answer": 2,
+		"explanation": "The open road limit is 100 km/h. Lower signs, conditions or your vehicle may mean you should go slower."
+	},
+	{
+		"id": "speed-urban",
+		"topic": "Speed",
+		"question": "What is the default speed limit in a built-up area with streetlights, unless signs say otherwise?",
+		"options": ["40 km/h", "50 km/h", "60 km/h", "70 km/h"],
+		"answer": 1,
+		"explanation": "Urban areas default to 50 km/h."
+	},
+	{
+		"id": "speed-bus",
+		"topic": "Speed",
+		"question": "You approach a school bus that has stopped to let children on or off. What is the most you can travel when passing it?",
+		"options": ["20 km/h", "30 km/h", "40 km/h", "50 km/h"],
+		"answer": 0,
+		"explanation": "You must slow to 20 km/h when passing a stopped school bus, in either direction."
+	},
+	{
+		"id": "follow-dry",
+		"topic": "Following distance",
+		"question": "In good conditions, what is the minimum following distance you should keep?",
+		"options": ["1 second", "2 seconds", "3 metres", "One car length"],
+		"answer": 1,
+		"explanation": "Keep at least a 2-second gap. It adjusts with speed, unlike a fixed number of metres."
+	},
+	{
+		"id": "follow-wet",
+		"topic": "Following distance",
+		"question": "What should you do with your following distance when the road is wet?",
+		"options": [
+			"Keep it the same",
+			"Halve it",
+			"Double it to at least 4 seconds",
+			"Only increase it above 80 km/h"
+		],
+		"answer": 2,
+		"explanation": "Stopping takes longer on a wet road, so double your gap to at least 4 seconds."
+	},
+	{
+		"id": "give-right",
+		"topic": "Giving way",
+		"question": "You are turning right at an intersection with no signs or markings. Who must you give way to?",
+		"options": [
+			"Only vehicles coming from your left",
+			"Vehicles coming towards you that are going straight or turning left",
+			"Nobody, because you signalled first",
+			"Only vehicles going straight"
+		],
+		"answer": 1,
+		"explanation": "A vehicle turning right gives way to oncoming vehicles that are going straight or turning left."
+	},
+	{
+		"id": "round-right",
+		"topic": "Giving way",
+		"question": "At a roundabout, who do you give way to?",
+		"options": [
+			"Traffic from your left",
+			"Traffic from your right",
+			"Traffic already in the roundabout, from either side",
+			"Only larger vehicles"
+		],
+		"answer": 1,
+		"explanation": "Give way to vehicles coming from your right, which means those already approaching or circulating ahead of you."
+	},
+	{
+		"id": "stop-sign",
+		"topic": "Signs and signals",
+		"question": "You reach a stop sign. Where must you stop?",
+		"options": [
+			"Wherever you can see the road clearly",
+			"At the limit line, or before the intersection if there is no line",
+			"Just past the sign",
+			"Only if other traffic is coming"
+		],
+		"answer": 1,
+		"explanation": "Always stop at the limit line, then give way to all traffic."
+	},
+	{
+		"id": "ped-cross",
+		"topic": "Pedestrians",
+		"question": "A pedestrian is on a pedestrian crossing in front of you. What must you do?",
+		"options": [
+			"Sound your horn",
+			"Give way and wait until they are clear",
+			"Drive around them slowly",
+			"Slow down and keep going"
+		],
+		"answer": 1,
+		"explanation": "Always give way to people on a crossing, and do not overtake near one."
+	},
+	{
+		"id": "alcohol-under20",
+		"topic": "Alcohol and drugs",
+		"question": "What is the legal alcohol limit for a driver under 20?",
+		"options": [
+			"Zero",
+			"Half the adult limit",
+			"The same as an adult's",
+			"One standard drink"
+		],
+		"answer": 0,
+		"explanation": "Drivers under 20 have a zero alcohol limit, so any detectable alcohol is an offence."
+	},
+	{
+		"id": "licence-supervisor",
+		"topic": "Licensing",
+		"question": "As a learner driver, who can supervise you?",
+		"options": [
+			"Anyone aged 18 or over",
+			"Someone who has held a full licence for at least 2 years and is in the front seat",
+			"Any licensed driver in the car",
+			"A restricted licence holder"
+		],
+		"answer": 1,
+		"explanation": "Your supervisor must hold a full licence for the vehicle class, for at least 2 years, and sit beside you."
+	},
+	{
+		"id": "phone",
+		"topic": "Distractions",
+		"question": "Which is allowed while you are driving?",
+		"options": [
+			"Texting at a red light",
+			"Holding a phone to your ear",
+			"Using hands-free calling",
+			"Scrolling music on a phone in your hand"
+		],
+		"answer": 2,
+		"explanation": "Hand-held phone use is illegal while driving. Hands-free is allowed, though it can still distract you."
+	},
+	{
+		"id": "speed-limit-max",
+		"topic": "Speed",
+		"question": "The sign says 100 km/h. What does that limit mean?",
+		"options": [
+			"The speed you should always drive at",
+			"The maximum speed allowed in good conditions",
+			"The minimum speed you must keep up",
+			"The speed that applies only in daylight"
+		],
+		"answer": 1,
+		"explanation": "A limit is a maximum, not a target. In rain, fog, heavy traffic or on a bendy road, a safe speed may be well below it."
+	},
+	{
+		"id": "speed-stopping",
+		"topic": "Speed",
+		"question": "What happens to your stopping distance when you double your speed?",
+		"options": [
+			"It doubles",
+			"It stays the same",
+			"It more than doubles",
+			"It halves"
+		],
+		"answer": 2,
+		"explanation": "Stopping distance grows faster than speed. Higher speed means more reaction distance and a much longer braking distance."
+	},
+	{
+		"id": "follow-tailgater",
+		"topic": "Following distance",
+		"question": "A driver is following you too closely. What is the best response?",
+		"options": [
+			"Brake sharply to scare them",
+			"Speed up to get away",
+			"Increase the gap ahead of you and let them pass when it is safe",
+			"Wave them off with your hand"
+		],
+		"answer": 2,
+		"explanation": "A bigger gap ahead gives you more time to slow gently, and letting them pass removes the risk behind you."
+	},
+	{
+		"id": "follow-night",
+		"topic": "Following distance",
+		"question": "Why should you keep a larger gap at night?",
+		"options": [
+			"Your brakes work worse in the dark",
+			"It is harder to judge speed and distance",
+			"Other drivers drive faster at night",
+			"Headlights reduce your reaction time to zero"
+		],
+		"answer": 1,
+		"explanation": "Seeing and judging distance is harder in low light, so you need extra time to react."
+	},
+	{
+		"id": "give-t",
+		"topic": "Giving way",
+		"question": "You are at the end of a T intersection, where your road ends. Who has priority if there are no signs?",
+		"options": [
+			"You do, if you arrived first",
+			"Vehicles on the road that continues past the intersection",
+			"Whoever is going faster",
+			"Nobody, take turns"
+		],
+		"answer": 1,
+		"explanation": "At a T intersection, traffic on the road that ends gives way to traffic on the road that continues."
+	},
+	{
+		"id": "give-driveway",
+		"topic": "Giving way",
+		"question": "You are driving out of a driveway onto a road. Who must you give way to?",
+		"options": [
+			"Only vehicles on the road",
+			"Only pedestrians",
+			"All traffic on the road and any pedestrians on the footpath",
+			"Nobody, since you are on private property"
+		],
+		"answer": 2,
+		"explanation": "Give way to pedestrians on the footpath and to all vehicles on the road before you enter it."
+	},
+	{
+		"id": "give-parked",
+		"topic": "Giving way",
+		"question": "There is a parked car blocking part of your side of the road, and a vehicle is coming the other way. What should you do?",
+		"options": [
+			"Speed up and go first",
+			"Give way to the oncoming vehicle",
+			"Flash your lights and go",
+			"Go first if you signalled"
+		],
+		"answer": 1,
+		"explanation": "If an obstruction is on your side of the road, give way to oncoming traffic."
+	},
+	{
+		"id": "give-emergency",
+		"topic": "Giving way",
+		"question": "An ambulance with flashing lights and siren is behind you. What should you do?",
+		"options": [
+			"Speed up to get out of the way",
+			"Stop immediately wherever you are",
+			"Move left and give way, stopping if necessary, but not in the middle of an intersection",
+			"Ignore it if you have right of way"
+		],
+		"answer": 2,
+		"explanation": "Make way safely. Move left and stop if you have to, but do not stop in a place that blocks the intersection."
+	},
+	{
+		"id": "give-bus",
+		"topic": "Giving way",
+		"question": "A bus beside you has its right indicator on to pull out from a bus stop in a 50 km/h zone. What must you do?",
+		"options": [
+			"Overtake it quickly",
+			"Give way to the bus",
+			"Sound your horn",
+			"Keep your speed and hope it waits"
+		],
+		"answer": 1,
+		"explanation": "In speed limits of 60 km/h or less, give way to a bus signalling to pull out from a bus stop."
+	},
+	{
+		"id": "give-bridge",
+		"topic": "Giving way",
+		"question": "At a one-lane bridge, the sign facing you shows a red arrow. What does it mean?",
+		"options": [
+			"You have priority",
+			"The bridge is closed",
+			"You must give way to oncoming vehicles",
+			"Only trucks must wait"
+		],
+		"answer": 2,
+		"explanation": "A red arrow means give way to oncoming traffic. A blue arrow means you have priority."
+	},
+	{
+		"id": "give-turnped",
+		"topic": "Giving way",
+		"question": "You are turning left into a side road. A pedestrian is crossing that side road. What must you do?",
+		"options": [
+			"Turn first and let them wait",
+			"Give way to the pedestrian",
+			"Beep and proceed",
+			"Turn only if there is room to pass them"
+		],
+		"answer": 1,
+		"explanation": "When you turn, you must give way to pedestrians crossing the road you are entering."
+	},
+	{
+		"id": "give-cyclist",
+		"topic": "Giving way",
+		"question": "You are turning left across a marked cycle lane and a cyclist is in it. What should you do?",
+		"options": [
+			"Turn first, since you are already signalling",
+			"Give way to the cyclist",
+			"Honk to alert the cyclist",
+			"Drive in the cycle lane to get ahead"
+		],
+		"answer": 1,
+		"explanation": "Check for cyclists and give way before crossing a cycle lane."
+	},
+	{
+		"id": "round-signal",
+		"topic": "Giving way",
+		"question": "You are going straight through a roundabout. When do you signal?",
+		"options": [
+			"Right on approach, left to exit",
+			"Left to exit, when leaving the roundabout",
+			"No signal at all",
+			"Right on approach and right to exit"
+		],
+		"answer": 1,
+		"explanation": "When going straight, signal left as you leave the roundabout. Signal right on approach only if you are turning right."
+	},
+	{
+		"id": "sign-warning",
+		"topic": "Signs and signals",
+		"question": "What shape and colour are most warning signs in New Zealand?",
+		"options": [
+			"Red circle",
+			"Blue square",
+			"Yellow diamond",
+			"White triangle"
+		],
+		"answer": 2,
+		"explanation": "Yellow diamond signs warn about hazards ahead, such as bends, intersections or crossings."
+	},
+	{
+		"id": "sign-giveway",
+		"topic": "Signs and signals",
+		"question": "What shape is a give way sign?",
+		"options": ["Octagon", "Upside-down triangle", "Circle", "Diamond"],
+		"answer": 1,
+		"explanation": "A give way sign is a downward-pointing triangle. The octagon is the stop sign."
+	},
+	{
+		"id": "light-amber",
+		"topic": "Signs and signals",
+		"question": "The traffic light turns amber as you approach. What should you do?",
+		"options": [
+			"Speed up to beat the red",
+			"Stop, unless it is unsafe to do so",
+			"Always continue",
+			"Slow down but never stop"
+		],
+		"answer": 1,
+		"explanation": "An amber light means stop, unless you are so close that stopping would be unsafe."
+	},
+	{
+		"id": "line-yellow",
+		"topic": "Signs and signals",
+		"question": "There is a solid yellow centre line on your side of the road. What does it mean?",
+		"options": [
+			"You may overtake if the road is clear",
+			"You must not cross it to overtake",
+			"You must stay in the left half only at night",
+			"Slow vehicles can pass"
+		],
+		"answer": 1,
+		"explanation": "A solid yellow line on your side means no overtaking. You can still cross it to turn into a driveway or side road."
+	},
+	{
+		"id": "line-brokenyellow",
+		"topic": "Signs and signals",
+		"question": "What does a broken yellow line along the edge of the road mean?",
+		"options": [
+			"You may park for up to an hour",
+			"You must not park there",
+			"Only buses may stop",
+			"Parking is allowed after 6 pm"
+		],
+		"answer": 1,
+		"explanation": "Broken yellow lines at the edge of the road mean no parking."
+	},
+	{
+		"id": "rail-lights",
+		"topic": "Signs and signals",
+		"question": "Flashing red lights are working at a railway level crossing. What must you do?",
+		"options": [
+			"Cross quickly if no train is visible",
+			"Stop and wait until the lights stop flashing",
+			"Slow down and cross carefully",
+			"Cross if there is another car ahead of you"
+		],
+		"answer": 1,
+		"explanation": "Stop and wait. Trains cannot stop quickly, so never try to beat one."
+	},
+	{
+		"id": "school-patrol",
+		"topic": "Signs and signals",
+		"question": "A school patrol has put out its signs for children to cross. What must you do?",
+		"options": [
+			"Slow down to 20 km/h",
+			"Stop and wait until the signs are removed and the children are clear",
+			"Sound your horn",
+			"Carry on if the children have not stepped out yet"
+		],
+		"answer": 1,
+		"explanation": "Stop for a school patrol and stay stopped until the signs have been withdrawn."
+	},
+	{
+		"id": "overtake-when",
+		"topic": "Overtaking",
+		"question": "When is it safe to overtake?",
+		"options": [
+			"When you can see far enough ahead to finish the pass without causing danger",
+			"Whenever the vehicle ahead is slow",
+			"Only on straight roads at night",
+			"When someone behind you flashes their lights"
+		],
+		"answer": 0,
+		"explanation": "You need a clear view and enough room to complete the pass and return to your lane safely."
+	},
+	{
+		"id": "overtake-where",
+		"topic": "Overtaking",
+		"question": "Where should you not overtake?",
+		"options": [
+			"On a straight road",
+			"Near the crest of a hill",
+			"On a multi-lane road",
+			"On a wide road with lots of room"
+		],
+		"answer": 1,
+		"explanation": "Do not overtake where you cannot see far enough ahead, such as near hill crests, bends, intersections or pedestrian crossings."
+	},
+	{
+		"id": "slow-pullover",
+		"topic": "Overtaking",
+		"question": "You are driving slowly and a line of vehicles builds up behind you. What should you do?",
+		"options": [
+			"Speed up to the limit regardless",
+			"Pull over when safe to let them pass",
+			"Brake to slow them further",
+			"Stay put so nobody overtakes"
+		],
+		"answer": 1,
+		"explanation": "Pull over where it is safe so traffic can pass. This reduces frustration and risky overtaking."
+	},
+	{
+		"id": "ped-guide",
+		"topic": "Pedestrians",
+		"question": "A pedestrian is using a white cane or guide dog at the kerb. What should you do?",
+		"options": [
+			"Drive on, since they have not stepped out",
+			"Give way and be ready to stop",
+			"Sound your horn so they know you are there",
+			"Edge forward slowly"
+		],
+		"answer": 1,
+		"explanation": "Take extra care and give way to people with disabilities, who may take longer to cross or not hear you."
+	},
+	{
+		"id": "alcohol-adult",
+		"topic": "Alcohol and drugs",
+		"question": "What is the legal breath alcohol limit for drivers aged 20 or over?",
+		"options": [
+			"Zero",
+			"250 micrograms per litre of breath",
+			"500 micrograms per litre of breath",
+			"It depends on how many drinks you have had"
+		],
+		"answer": 1,
+		"explanation": "The adult breath limit is 250 micrograms per litre of breath (or 50 mg per 100 ml of blood). The safest choice is not to drink and drive at all."
+	},
+	{
+		"id": "drugs-medicine",
+		"topic": "Alcohol and drugs",
+		"question": "Your doctor says a medicine may make you drowsy. What should you do?",
+		"options": [
+			"Drive only on quiet roads",
+			"Not drive until you know how it affects you",
+			"Drink coffee before driving",
+			"Drive but take extra breaks"
+		],
+		"answer": 1,
+		"explanation": "Any drug or medicine that affects alertness can impair your driving. Ask the doctor or pharmacist, and do not drive if you are affected."
+	},
+	{
+		"id": "fatigue-break",
+		"topic": "Alcohol and drugs",
+		"question": "How often should you take a break on a long trip?",
+		"options": [
+			"Every 30 minutes",
+			"About every 2 hours",
+			"Only when you feel tired",
+			"Once you have driven 500 km"
+		],
+		"answer": 1,
+		"explanation": "Take a break about every 2 hours, and stop sooner if you feel tired. Fatigue slows reactions much like alcohol."
+	},
+	{
+		"id": "licence-age",
+		"topic": "Licensing",
+		"question": "What is the minimum age to sit the learner licence theory test for a car?",
+		"options": ["14", "15", "16", "18"],
+		"answer": 2,
+		"explanation": "You must be at least 16 to get a car learner licence."
+	},
+	{
+		"id": "licence-six",
+		"topic": "Licensing",
+		"question": "How long must you hold your learner licence before sitting the restricted licence test?",
+		"options": ["1 month", "3 months", "At least 6 months", "12 months"],
+		"answer": 2,
+		"explanation": "You must hold your learner licence for at least 6 months, though an approved driving course can shorten this."
+	},
+	{
+		"id": "licence-carry",
+		"topic": "Licensing",
+		"question": "Which is true about carrying your licence when you drive?",
+		"options": [
+			"You only need it on motorways",
+			"You must carry it with you",
+			"You only need it at night",
+			"You only need it with passengers"
+		],
+		"answer": 1,
+		"explanation": "You must carry your licence whenever you drive."
+	},
+	{
+		"id": "fatigue-distract",
+		"topic": "Distractions",
+		"question": "Which is the main danger of using a phone while driving, even hands-free?",
+		"options": [
+			"The phone might overheat",
+			"Your attention is divided",
+			"Your battery runs down",
+			"Other drivers cannot see you"
+		],
+		"answer": 1,
+		"explanation": "Talking takes your focus from the road, even if your hands are free."
+	},
+	{
+		"id": "belt-under15",
+		"topic": "Safety equipment",
+		"question": "Who is responsible for a passenger under 15 wearing a seatbelt or child restraint?",
+		"options": [
+			"The passenger",
+			"The parents wherever they are",
+			"The driver",
+			"Nobody in particular"
+		],
+		"answer": 2,
+		"explanation": "The driver is legally responsible for passengers under 15. Older passengers are responsible for themselves."
+	},
+	{
+		"id": "child-seven",
+		"topic": "Safety equipment",
+		"question": "Until what age must children use an approved child restraint?",
+		"options": [
+			"Their 5th birthday",
+			"Their 7th birthday",
+			"Their 10th birthday",
+			"Their 12th birthday"
+		],
+		"answer": 1,
+		"explanation": "Children must use an approved child restraint until their 7th birthday."
+	},
+	{
+		"id": "vehicle-wof",
+		"topic": "Vehicle",
+		"question": "What must a car have to be on the road legally?",
+		"options": [
+			"A current warrant of fitness and registration",
+			"Only a clean exterior",
+			"A full tank",
+			"New tyres every year"
+		],
+		"answer": 0,
+		"explanation": "A current WoF (or CoF) and registration are required. Both show the car is roadworthy and legally on the road."
+	},
+	{
+		"id": "vehicle-tyre",
+		"topic": "Vehicle",
+		"question": "What is the legal minimum tread depth for car tyres?",
+		"options": ["0.5 mm", "1.0 mm", "1.5 mm", "3.0 mm"],
+		"answer": 2,
+		"explanation": "Tyres must have at least 1.5 mm of tread across the whole tread surface. More tread gives better wet grip."
+	},
+	{
+		"id": "night-lights",
+		"topic": "Night and weather",
+		"question": "When must you use your headlights?",
+		"options": [
+			"Only after midnight",
+			"At night and whenever visibility is seriously reduced",
+			"Only on country roads",
+			"Only when it rains"
+		],
+		"answer": 1,
+		"explanation": "Use them at night and in bad weather, fog or smoke, when you cannot see clearly."
+	},
+	{
+		"id": "weather-skid",
+		"topic": "Night and weather",
+		"question": "Your car starts to skid. What should you do?",
+		"options": [
+			"Brake as hard as possible",
+			"Ease off the accelerator and steer where you want to go",
+			"Turn the wheel the opposite way",
+			"Accelerate out of it"
+		],
+		"answer": 1,
+		"explanation": "Ease off the accelerator and steer smoothly where you want to go. Hard braking or sudden steering can make it worse."
+	},
+	{
+		"id": "weather-aqua",
+		"topic": "Night and weather",
+		"question": "What should you do if the car starts to aquaplane?",
+		"options": [
+			"Brake hard",
+			"Ease off the accelerator and hold the wheel steady",
+			"Swerve left",
+			"Accelerate"
+		],
+		"answer": 1,
+		"explanation": "Ease off the accelerator gently and keep the steering straight until the tyres grip again."
+	},
+	{
+		"id": "move-off",
+		"topic": "Parking and moving off",
+		"question": "You are moving off from the kerb. What is the correct order?",
+		"options": [
+			"Signal, go, check mirror",
+			"Check mirrors and blind spot, signal, move when it is clear",
+			"Move when you hear no horns",
+			"Signal only if a car is nearby"
+		],
+		"answer": 1,
+		"explanation": "Look, signal, then go only when it is safe. Do not pull out in front of other traffic."
+	},
+	{
+		"id": "park-side",
+		"topic": "Parking and moving off",
+		"question": "Which way should you park on a road with two-way traffic?",
+		"options": [
+			"Facing any direction",
+			"Facing the direction of traffic on your side",
+			"Always facing uphill",
+			"Facing the oncoming traffic"
+		],
+		"answer": 1,
+		"explanation": "Park in the same direction as traffic travelling on your side of the road, and keep left."
+	},
+	{
+		"id": "emerg-crash",
+		"topic": "Emergencies",
+		"question": "You come across a crash and people are hurt. What should you do first?",
+		"options": [
+			"Move the injured into your car",
+			"Make the scene safe and call 111",
+			"Drive on and report it later",
+			"Take photos for evidence"
+		],
+		"answer": 1,
+		"explanation": "Make the scene safe for you and others, then call 111. Do not move injured people unless they are in immediate danger."
+	},
+	{
+		"id": "sign-img-stop",
+		"topic": "Road signs",
+		"image": "signs/stop.png",
+		"question": "What must you do when you reach this sign?",
+		"options": [
+			"Slow down and go if clear",
+			"Stop completely, then give way to all traffic",
+			"Stop only if other vehicles are coming",
+			"Give way to traffic from the right only"
+		],
+		"answer": 1,
+		"explanation": "A stop sign means you must come to a complete stop at the limit line, then give way to all traffic."
+	},
+	{
+		"id": "sign-img-giveway",
+		"topic": "Road signs",
+		"image": "signs/give-way.png",
+		"question": "What does this sign mean?",
+		"options": [
+			"Stop completely every time",
+			"Give way to all traffic, and stop if necessary",
+			"You have priority over cross traffic",
+			"Slow down but do not give way"
+		],
+		"answer": 1,
+		"explanation": "You must give way to all traffic on the road you are entering or crossing, and stop if you need to. Unlike a stop sign, you do not always have to stop."
+	},
+	{
+		"id": "sign-img-50",
+		"topic": "Road signs",
+		"image": "signs/speed-50.png",
+		"question": "What does this sign tell you?",
+		"options": [
+			"The minimum speed is 50 km/h",
+			"The maximum speed is 50 km/h",
+			"A speed camera is ahead",
+			"The recommended speed is 50 km/h"
+		],
+		"answer": 1,
+		"explanation": "A red circle with a number is a speed limit sign. It shows the maximum speed, not a target."
+	},
+	{
+		"id": "sign-img-100",
+		"topic": "Road signs",
+		"image": "signs/speed-100.png",
+		"question": "You see this sign on an open road at night in heavy rain. What does it mean for your speed?",
+		"options": [
+			"You must drive at 100 km/h",
+			"You may drive up to 100 km/h, but slower if conditions need it",
+			"You must not go below 100 km/h",
+			"Speed limits do not apply in rain"
+		],
+		"answer": 1,
+		"explanation": "The sign gives the maximum in good conditions. In heavy rain or at night, a safe speed can be well below it."
+	},
+	{
+		"id": "sign-img-noentry",
+		"topic": "Road signs",
+		"image": "signs/no-entry.png",
+		"question": "What does this sign mean?",
+		"options": [
+			"Vehicles must not enter",
+			"Parking is prohibited",
+			"The road ends ahead",
+			"Give way to all vehicles"
+		],
+		"answer": 0,
+		"explanation": "A red circle with a white bar means no entry. You would see it at the exit of a one-way road, for example."
+	},
+	{
+		"id": "sign-img-noright",
+		"topic": "Road signs",
+		"image": "signs/no-right-turn.png",
+		"question": "What does this sign mean?",
+		"options": [
+			"You must turn right",
+			"You must not turn right",
+			"A right turn is allowed after giving way",
+			"The road bends to the right"
+		],
+		"answer": 1,
+		"explanation": "A red circle with a diagonal line through a symbol means that action is prohibited. Here, no right turn."
+	},
+	{
+		"id": "sign-img-cross",
+		"topic": "Road signs",
+		"image": "signs/crossroads.png",
+		"question": "What does this sign warn you of?",
+		"options": [
+			"A railway crossing",
+			"A crossroads ahead",
+			"Roadworks",
+			"A pedestrian crossing"
+		],
+		"answer": 1,
+		"explanation": "A yellow diamond warns of a hazard ahead. This one shows a crossroads."
+	},
+	{
+		"id": "sign-img-tjunction",
+		"topic": "Road signs",
+		"image": "signs/t-junction.png",
+		"question": "What does this sign warn you of?",
+		"options": [
+			"A T intersection ahead",
+			"The road narrows",
+			"A bus stop ahead",
+			"A railway line"
+		],
+		"answer": 0,
+		"explanation": "This warning sign shows the road ahead ends at a T intersection."
+	},
+	{
+		"id": "sign-img-curve",
+		"topic": "Road signs",
+		"image": "signs/curve-right.png",
+		"question": "What does this sign warn you of?",
+		"options": [
+			"A bend to the right ahead",
+			"Right turn only",
+			"An overtaking lane",
+			"The road ends"
+		],
+		"answer": 0,
+		"explanation": "The curved arrow shows the road bends to the right ahead. Slow down before the bend, not in it."
+	},
+	{
+		"id": "sign-img-ped",
+		"topic": "Road signs",
+		"image": "signs/pedestrian.png",
+		"question": "What does this sign warn you of?",
+		"options": [
+			"A pedestrian crossing ahead",
+			"A playground ahead",
+			"Footpath users only",
+			"A school zone"
+		],
+		"answer": 0,
+		"explanation": "A yellow diamond with a walking figure warns that pedestrians may be crossing ahead. Be ready to slow or stop."
+	}
+]
